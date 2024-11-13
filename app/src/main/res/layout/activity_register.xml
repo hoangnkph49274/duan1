@@ -6,13 +6,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Login_Activity"
-    android:background="#ECBAB9">
+    tools:context=".RegisterActivity">
 
-    <ImageView
+    <TextView
         android:layout_width="wrap_content"
-        android:layout_height="800px"
-        android:src="@drawable/logo"
+        android:layout_height="wrap_content"
+        android:text="Đăng Ký"
+        android:textStyle="bold"
+        android:textSize="38dp"
+        android:textColor="@color/black"
+        android:layout_gravity="center"
+        android:layout_marginVertical="200px"
         />
     <TextView
         android:layout_width="wrap_content"
@@ -68,48 +72,54 @@
             android:hint="Enter password"
             android:textSize="18dp"/>
     </com.google.android.material.textfield.TextInputLayout>
-    <CheckBox
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Ghi nhớ tài khoản"
-        android:layout_marginTop="20px"
+        android:text="Confirm password:  "
+        android:textSize="18dp"
+        android:textColor="@color/black"
         android:layout_marginLeft="80px"
-        android:textSize="18dp"/>
-    <Button
-        android:id="@+id/btnLogin"
+        android:layout_marginBottom="30px"
+        android:layout_marginTop="30px"/>
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Đăng Nhập"
+        android:layout_marginHorizontal="80px"
+        app:boxBackgroundMode="outline"
+        app:boxStrokeColor="#000000"
+        app:boxBackgroundColor="#FFFFFF"
+        app:boxCornerRadiusTopStart="16dp"
+        app:boxCornerRadiusTopEnd="16dp"
+        app:boxCornerRadiusBottomStart="16dp"
+        app:boxCornerRadiusBottomEnd="16dp"
+        app:passwordToggleEnabled="true"
+        >
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter confirm password"
+            android:textSize="18dp"/>
+    </com.google.android.material.textfield.TextInputLayout>
+    <Button
+        android:id="@+id/btnRegister"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Đăng Ký"
+        android:textSize="18dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="80px"
+        android:background="@drawable/rounded_button"
+        android:layout_marginHorizontal="50px"
+        />
+    <Button
+        android:id="@+id/btncancel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Quay lại"
         android:textSize="18dp"
         android:layout_gravity="center"
         android:layout_marginTop="50px"
         android:background="@drawable/rounded_button"
         android:layout_marginHorizontal="50px"
         />
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Không có tài khoản? "
-            android:textColor="@color/black"
-            android:textSize="18sp"
-            android:gravity="center"
-            android:layout_marginTop="20px"
-            android:layout_marginLeft="200px"
-            />
-        <TextView
-            android:id="@+id/dangki"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Đăng kí?"
-            android:textColor="@color/black"
-            android:textSize="18sp"
-            android:gravity="center"
-            android:layout_marginTop="20px"
-            android:backgroundTint="#ECBAB9"
-            android:textStyle="bold"/>
-    </LinearLayout>
 </LinearLayout>

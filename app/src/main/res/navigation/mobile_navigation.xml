@@ -3,23 +3,36 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_home">
+    app:startDestination="@+id/nav_QlyMonHoc">
 
     <fragment
-        android:id="@+id/nav_home"
-        android:name="com.example.duan1.ui.home.HomeFragment"
-        android:label="@string/menu_home"
-        tools:layout="@layout/fragment_home" />
-
+        android:id="@+id/nav_QlyMonHoc"
+        android:name="com.example.duan1.UI.MonHocFragment"
+        android:label="Quản lý Môn Học"
+        tools:layout="@layout/fragment_mon_hoc" />
     <fragment
-        android:id="@+id/nav_gallery"
-        android:name="com.example.duan1.ui.gallery.GalleryFragment"
-        android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
-
+        android:id="@+id/nav_QlyTaiLieu"
+        android:name="com.example.duan1.UI.TaiLieuFragment"
+        android:label="Quản lý tài liệu"
+        tools:layout="@layout/fragment_tai_lieu" />
     <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="com.example.duan1.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
+        android:id="@+id/nav_LichHoc"
+        android:name="com.example.duan1.UI.LichHocFragment"
+        android:label="Lịch Học"
+        tools:layout="@layout/fragment_lich_hoc" />
+    <fragment
+        android:id="@+id/nav_QlyBaiTap"
+        android:name="com.example.duan1.UI.BaiTapFragment"
+        android:label="Quản lý bài tập"
+        tools:layout="@layout/fragment_bai_tap" />
+    <fragment
+        android:id="@+id/nav_GhiChu"
+        android:name="com.example.duan1.UI.GhiChuFragment"
+        android:label="Ghi chú"
+        tools:layout="@layout/fragment_ghi_chu" />
+    <fragment
+        android:id="@+id/nav_MucTieu"
+        android:name="com.example.duan1.UI.MucTieuFragment"
+        android:label="Mục tiêu"
+        tools:layout="@layout/fragment_muc_tieu" />
 </navigation>

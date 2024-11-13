@@ -5,16 +5,30 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_home"
+            android:id="@+id/nav_QlyMonHoc"
             android:icon="@drawable/ic_menu_camera"
-            android:title="@string/menu_home" />
+            android:title="Quản lý môn học" />
         <item
-            android:id="@+id/nav_gallery"
+            android:id="@+id/nav_QlyTaiLieu"
             android:icon="@drawable/ic_menu_gallery"
-            android:title="@string/menu_gallery" />
+            android:title="Quản lý Tài liệu" />
         <item
-            android:id="@+id/nav_slideshow"
+            android:id="@+id/nav_LichHoc"
             android:icon="@drawable/ic_menu_slideshow"
-            android:title="@string/menu_slideshow" />
+            android:title="Lịch Học" />
+        <item
+            android:id="@+id/nav_QlyBaiTap"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="Quản lý bài tập" />
+    </group>
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_GhiChu"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="Ghi Chú" />
+        <item
+            android:id="@+id/nav_MucTieu"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="Mục Tiêu" />
     </group>
 </menu>
