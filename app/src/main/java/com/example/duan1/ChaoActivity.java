@@ -29,5 +29,7 @@ public class ChaoActivity extends AppCompatActivity {
                 startActivity(new Intent(ChaoActivity.this, Login_Activity.class));
                 finish();
             } }, 3000);
+
+        // 123344
     }
 }
