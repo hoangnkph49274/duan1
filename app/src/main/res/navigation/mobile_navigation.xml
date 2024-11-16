@@ -9,30 +9,101 @@
         android:id="@+id/nav_QlyMonHoc"
         android:name="com.example.duan1.UI.MonHocFragment"
         android:label="Quản lý Môn Học"
-        tools:layout="@layout/fragment_mon_hoc" />
+        tools:layout="@layout/fragment_mon_hoc" >
+        <action
+            android:id="@+id/action_nav_QlyMonHoc_to_nav_ThemMonHoc"
+            app:destination="@id/nav_ThemMonHoc" />
+        <action
+            android:id="@+id/action_nav_QlyMonHoc_to_nav_SuaMonHoc"
+            app:destination="@id/nav_SuaMonHoc" />
+    </fragment>
     <fragment
         android:id="@+id/nav_QlyTaiLieu"
         android:name="com.example.duan1.UI.TaiLieuFragment"
         android:label="Quản lý tài liệu"
-        tools:layout="@layout/fragment_tai_lieu" />
+        tools:layout="@layout/fragment_tai_lieu" >
+        <action
+            android:id="@+id/action_nav_QlyTaiLieu_to_nav_ThemTaiLieu"
+            app:destination="@id/nav_ThemTaiLieu" />
+    </fragment>
     <fragment
         android:id="@+id/nav_LichHoc"
         android:name="com.example.duan1.UI.LichHocFragment"
         android:label="Lịch Học"
-        tools:layout="@layout/fragment_lich_hoc" />
+        tools:layout="@layout/fragment_lich_hoc"
+        >
+        <action
+            android:id="@+id/action_nav_LichHoc_to_nav_ThemLichHoc"
+            app:destination="@id/nav_ThemLichHoc" />
+        <action
+            android:id="@+id/action_nav_LichHoc_to_nav_UpdateLichHoc"
+            app:destination="@id/nav_UpdateLichHoc" />
+    </fragment>
     <fragment
         android:id="@+id/nav_QlyBaiTap"
         android:name="com.example.duan1.UI.BaiTapFragment"
         android:label="Quản lý bài tập"
-        tools:layout="@layout/fragment_bai_tap" />
+        tools:layout="@layout/fragment_bai_tap" >
+        <action
+            android:id="@+id/action_nav_QlyBaiTap_to_nav_ThemBaiTap"
+            app:destination="@id/nav_ThemBaiTap" />
+    </fragment>
     <fragment
         android:id="@+id/nav_GhiChu"
         android:name="com.example.duan1.UI.GhiChuFragment"
         android:label="Ghi chú"
-        tools:layout="@layout/fragment_ghi_chu" />
+        tools:layout="@layout/fragment_ghi_chu" >
+        <action
+            android:id="@+id/action_nav_GhiChu_to_nav_ThemGhiChu"
+            app:destination="@id/nav_ThemGhiChu" />
+    </fragment>
     <fragment
         android:id="@+id/nav_MucTieu"
         android:name="com.example.duan1.UI.MucTieuFragment"
         android:label="Mục tiêu"
-        tools:layout="@layout/fragment_muc_tieu" />
+        tools:layout="@layout/fragment_muc_tieu" >
+        <action
+            android:id="@+id/action_nav_MucTieu_to_nav_ThemMucTieu"
+            app:destination="@id/nav_ThemMucTieu" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_ThemMonHoc"
+        android:name="com.example.duan1.MonHoc.ThemMonHocFragment"
+        android:label="Thêm môn học"
+        tools:layout="@layout/fragment_them_mon_hoc" />
+    <fragment
+        android:id="@+id/nav_SuaMonHoc"
+        android:name="com.example.duan1.MonHoc.UpdateMonHocFragment"
+        android:label="Sửa môn học"
+        tools:layout="@layout/fragment_update_monhoc" />
+    <fragment
+        android:id="@+id/nav_ThemLichHoc"
+        android:name="com.example.duan1.LichHoc.ThemLichHocFragment"
+        android:label="Thêm lịch học"
+        tools:layout="@layout/fragment_them_lich_hoc" />
+    <fragment
+        android:id="@+id/nav_UpdateLichHoc"
+        android:name="com.example.duan1.LichHoc.UpdateLichHocFragment"
+        android:label="Cập nhập lịch học"
+        tools:layout="@layout/fragment_update_lich_hoc" />
+    <fragment
+        android:id="@+id/nav_ThemMucTieu"
+        android:name="com.example.duan1.MucTieu.ThemMucTieuFragment"
+        android:label="Thêm mục tiêu"
+        tools:layout="@layout/fragment_them_muc_tieu" />
+    <fragment
+        android:id="@+id/nav_ThemGhiChu"
+        android:name="com.example.duan1.GhiChu.ThemGhiChuFragment"
+        android:label="Thêm ghi chú"
+        tools:layout="@layout/fragment_them_ghi_chu" />
+    <fragment
+        android:id="@+id/nav_ThemTaiLieu"
+        android:name="com.example.duan1.TaiLieu.ThemTaiLieuFragment"
+        android:label="Thêm tài liệu"
+        tools:layout="@layout/fragment_them_tai_lieu" />
+    <fragment
+        android:id="@+id/nav_ThemBaiTap"
+        android:name="com.example.duan1.BaiTap.ThemBaiTapFragment"
+        android:label="Thêm bài tập"
+        tools:layout="@layout/fragment_them_bai_tap" />
 </navigation>

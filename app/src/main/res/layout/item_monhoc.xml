@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="365dp"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp"
+    app:cardCornerRadius="10dp"
+    android:backgroundTint="#9BE6EF">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <LinearLayout
+            android:layout_width="230dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <TextView
+                android:id="@+id/tvMa"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Mã môn: C1"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="5dp" />
+
+            <TextView
+                android:id="@+id/tvName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tên môn học: Lập trình C"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:textSize="16sp"
+                android:layout_marginBottom="5dp" />
+
+            <TextView
+                android:id="@+id/tvTinChi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:text="Số tín chỉ: 3"
+                android:textSize="16sp"
+                android:layout_marginBottom="5dp" />
+
+            <TextView
+                android:id="@+id/tvGVien"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Giảng viên: Cô Thu"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:textSize="16sp"
+                android:layout_marginBottom="10dp" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_margin="20dp">
+
+            <ImageView
+                android:id="@+id/btnsua"
+                android:layout_width="40sp"
+                android:layout_height="40sp"
+                android:src="@drawable/iconsua"
+                android:contentDescription="Chỉnh sửa"
+                android:layout_marginEnd="10dp" />
+
+            <ImageView
+                android:id="@+id/btnxoa"
+                android:layout_width="40sp"
+                android:layout_height="40sp"
+                android:src="@drawable/iconxoa"
+                android:contentDescription="Xóa" />
+        </LinearLayout>
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>
