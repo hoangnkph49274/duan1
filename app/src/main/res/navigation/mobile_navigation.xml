@@ -25,6 +25,9 @@
         <action
             android:id="@+id/action_nav_QlyTaiLieu_to_nav_ThemTaiLieu"
             app:destination="@id/nav_ThemTaiLieu" />
+        <action
+            android:id="@+id/action_nav_QlyTaiLieu_to_nav_XemTaiLieu"
+            app:destination="@id/nav_XemTaiLieu" />
     </fragment>
     <fragment
         android:id="@+id/nav_LichHoc"
@@ -47,6 +50,10 @@
         <action
             android:id="@+id/action_nav_QlyBaiTap_to_nav_ThemBaiTap"
             app:destination="@id/nav_ThemBaiTap" />
+        <action
+            android:id="@+id/action_nav_QlyBaiTap_to_nav_XemBaiTap"
+            app:destination="@id/nav_XemBaiTap" />
+
     </fragment>
     <fragment
         android:id="@+id/nav_GhiChu"
@@ -56,6 +63,9 @@
         <action
             android:id="@+id/action_nav_GhiChu_to_nav_ThemGhiChu"
             app:destination="@id/nav_ThemGhiChu" />
+        <action
+            android:id="@+id/action_nav_GhiChu_to_nav_XemGhiChu"
+            app:destination="@id/nav_XemGhiChu" />
     </fragment>
     <fragment
         android:id="@+id/nav_MucTieu"
@@ -65,6 +75,9 @@
         <action
             android:id="@+id/action_nav_MucTieu_to_nav_ThemMucTieu"
             app:destination="@id/nav_ThemMucTieu" />
+        <action
+            android:id="@+id/action_nav_MucTieu_to_nav_UpdateMucTieu"
+            app:destination="@id/nav_UpdateMucTieu" />
     </fragment>
     <fragment
         android:id="@+id/nav_ThemMonHoc"
@@ -92,18 +105,38 @@
         android:label="Thêm mục tiêu"
         tools:layout="@layout/fragment_them_muc_tieu" />
     <fragment
+        android:id="@+id/nav_UpdateMucTieu"
+        android:name="com.example.duan1.MucTieu.UpdateMucTieuFragment"
+        android:label="Cập nhật mục tiêu"
+        tools:layout="@layout/fragment_update_muc_tieu" />
+    <fragment
         android:id="@+id/nav_ThemGhiChu"
         android:name="com.example.duan1.GhiChu.ThemGhiChuFragment"
         android:label="Thêm ghi chú"
         tools:layout="@layout/fragment_them_ghi_chu" />
+    <fragment
+        android:id="@+id/nav_XemGhiChu"
+        android:name="com.example.duan1.GhiChu.XemGhiChuFragment"
+        android:label="Ghi chú"
+        tools:layout="@layout/fragment_xem_ghi_chu" />
     <fragment
         android:id="@+id/nav_ThemTaiLieu"
         android:name="com.example.duan1.TaiLieu.ThemTaiLieuFragment"
         android:label="Thêm tài liệu"
         tools:layout="@layout/fragment_them_tai_lieu" />
     <fragment
+        android:id="@+id/nav_XemTaiLieu"
+        android:name="com.example.duan1.TaiLieu.XemTaiLieuFragment"
+        android:label="Tài liệu"
+        tools:layout="@layout/fragment_xem_tai_lieu" />
+    <fragment
         android:id="@+id/nav_ThemBaiTap"
         android:name="com.example.duan1.BaiTap.ThemBaiTapFragment"
         android:label="Thêm bài tập"
         tools:layout="@layout/fragment_them_bai_tap" />
+    <fragment
+        android:id="@+id/nav_XemBaiTap"
+        android:name="com.example.duan1.BaiTap.XemBaiTapFragment"
+        android:label="Bài tập"
+        tools:layout="@layout/fragment_xem_bai_tap" />
 </navigation>

@@ -12,6 +12,8 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.duan1.Adapter.BaiTap;
@@ -46,7 +48,8 @@ public class BaiTapAdapter extends RecyclerView.Adapter<BaiTapAdapter.BaiTapView
         holder.btnXem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                NavController navController = Navigation.findNavController(v);
+                navController.navigate(R.id.action_nav_QlyBaiTap_to_nav_XemBaiTap);
             }
         });
         holder.btnXoa.setOnClickListener(new View.OnClickListener() {

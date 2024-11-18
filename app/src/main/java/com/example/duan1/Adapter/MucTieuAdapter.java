@@ -8,6 +8,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.duan1.R;
@@ -45,6 +47,8 @@ public class MucTieuAdapter extends RecyclerView.Adapter<MucTieuAdapter.ViewHold
         holder.btnEdit.setOnClickListener(v -> {
             // Thực hiện hành động khi nhấn vào nút chỉnh sửa
             // Ví dụ: hiển thị một thông báo
+            NavController navController = Navigation.findNavController(v);
+            navController.navigate(R.id.action_nav_MucTieu_to_nav_UpdateMucTieu);
             Toast.makeText(context, "Chỉnh sửa: " + mucTieu.getTen(), Toast.LENGTH_SHORT).show();
 
             // Thêm các thao tác khác tùy vào yêu cầu của bạn, ví dụ mở dialog hoặc intent

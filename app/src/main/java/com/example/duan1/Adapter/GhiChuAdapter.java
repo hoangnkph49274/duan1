@@ -11,6 +11,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.duan1.Adapter.GhiChu;
@@ -43,9 +45,11 @@ public class GhiChuAdapter extends RecyclerView.Adapter<GhiChuAdapter.GhiChuView
         holder.tvName.setText("Tên ghi chú: " + ghiChu.getTen());
         holder.tvNgay.setText("Ngày tạo: " + ghiChu.getNgay());
 
-        holder.btnXem.setOnClickListener(v ->
-                Toast.makeText(context, "Xem ghi chú: " + ghiChu.getMa(), Toast.LENGTH_SHORT).show()
-        );
+        holder.btnXem.setOnClickListener(v ->{
+            Toast.makeText(context, "Xem ghi chú: " + ghiChu.getMa(), Toast.LENGTH_SHORT).show();
+            NavController navController = Navigation.findNavController(v);
+            navController.navigate(R.id.action_nav_GhiChu_to_nav_XemGhiChu);
+        });
 
         holder.btnXoa.setOnClickListener(v -> {
             AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());

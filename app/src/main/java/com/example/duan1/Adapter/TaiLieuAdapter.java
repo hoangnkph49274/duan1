@@ -10,6 +10,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
  // Đảm bảo bạn đã định nghĩa lớp TaiLieu cho các đối tượng tài liệu
 import com.example.duan1.R;
@@ -44,8 +46,8 @@ public class TaiLieuAdapter extends RecyclerView.Adapter<TaiLieuAdapter.TaiLieuV
 
         // Xử lý sự kiện khi nhấn nút "Xem"
         holder.btnXem.setOnClickListener(v -> {
-            // Xử lý logic khi nhấn vào nút xem
-            // Ví dụ: Mở tài liệu hoặc hiển thị chi tiết
+            NavController navController = Navigation.findNavController(v);
+            navController.navigate(R.id.action_nav_QlyTaiLieu_to_nav_XemTaiLieu);
         });
 
         // Xử lý sự kiện khi nhấn nút "Xóa"
