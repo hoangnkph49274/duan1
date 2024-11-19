@@ -7,60 +7,33 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Spinner;
 
+import com.example.duan1.Adapter.TrangThai;
+import com.example.duan1.Adapter.TrangThaiAdapter;
 import com.example.duan1.R;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link XemBaiTapFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import java.util.ArrayList;
+
+
 public class XemBaiTapFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
+    Spinner spinner;
+    java.util.ArrayList<TrangThai> ArrayList;
     public XemBaiTapFragment() {
         // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment XemBaiTapFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static XemBaiTapFragment newInstance(String param1, String param2) {
-        XemBaiTapFragment fragment = new XemBaiTapFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_xem_bai_tap, container, false);
+        View view = inflater.inflate(R.layout.fragment_xem_bai_tap, container, false);
+        spinner = view.findViewById(R.id.spinnerTrangThai);
+        ArrayList = new ArrayList<>();
+        ArrayList.add(new TrangThai("Chưa hoàn thành"));
+        ArrayList.add(new TrangThai("Đã hoàn thành"));
+        TrangThaiAdapter trangThaiAdapter = new TrangThaiAdapter(ArrayList);
+        spinner.setAdapter(trangThaiAdapter);
+        return view;
     }
 }
