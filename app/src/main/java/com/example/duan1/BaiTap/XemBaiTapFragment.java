@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Spinner;
 
-import com.example.duan1.Adapter.TrangThai;
+import com.example.duan1.Model.TrangThai;
 import com.example.duan1.Adapter.TrangThaiAdapter;
 import com.example.duan1.R;
 

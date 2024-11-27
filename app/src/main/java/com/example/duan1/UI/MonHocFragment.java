@@ -6,14 +6,16 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import com.example.duan1.Adapter.MonHoc;
+import com.example.duan1.Model.MonHoc;
 import com.example.duan1.Adapter.MonHocAdapter;
 import com.example.duan1.R;
+import com.example.duan1.DAO.MonHocDAO;  // Thêm import MonHocDAO
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import java.util.ArrayList;
 import java.util.List;
 
 public class MonHocFragment extends Fragment {
@@ -37,14 +39,13 @@ public class MonHocFragment extends Fragment {
         recyclerView = view.findViewById(R.id.recyclerViewMonHoc);
         fabAdd = view.findViewById(R.id.fabAddMonHoc);
 
-        // Initialize data
-        monHocList = new ArrayList<>();
-        monHocList.add(new MonHoc("C1", "Lập trình C", 3, "Cô Thu"));
-        monHocList.add(new MonHoc("Java1", "Lập trình Java", 3, "Thầy Sơn"));
-        // Add more courses as needed
+        // Lấy dữ liệu từ MonHocDAO
+        MonHocDAO monHocDAO = new MonHocDAO(getContext());
+        monHocList = monHocDAO.getAllMonHoc();  // Lấy danh sách môn học từ cơ sở dữ liệu
 
         // Set up the RecyclerView
-        adapter = new MonHocAdapter(monHocList);
+        adapter = new MonHocAdapter(getContext(),monHocList);
+        Log.d("kkkkkkkk", ""+monHocList.size());
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(adapter);
 

@@ -139,4 +139,11 @@
         android:name="com.example.duan1.BaiTap.XemBaiTapFragment"
         android:label="Bài tập"
         tools:layout="@layout/fragment_xem_bai_tap" />
+    <fragment
+        android:id="@+id/nav_Search"
+        android:name="com.example.duan1.UI.SearchFragment"
+        android:label="Search"
+        tools:layout="@layout/fragment_search" >
+
+    </fragment>
 </navigation>

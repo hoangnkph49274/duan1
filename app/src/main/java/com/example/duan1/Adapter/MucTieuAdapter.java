@@ -1,6 +1,7 @@
 package com.example.duan1.Adapter;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.duan1.Model.MucTieu;
 import com.example.duan1.R;
 
 import java.util.List;
@@ -39,17 +41,23 @@ public class MucTieuAdapter extends RecyclerView.Adapter<MucTieuAdapter.ViewHold
         MucTieu mucTieu = mucTieuList.get(position);
 
         holder.tvMa.setText("Mã mục tiêu: " + mucTieu.getMa());
-        holder.tvTen.setText("Tên mục tiêu: " + mucTieu.getTen());
+        holder.tvTen.setText("Tên mục tiêu: " + mucTieu.getNoidung());
         holder.tvNgayHoc.setText("Ngày bắt đầu: " + mucTieu.getNgay());
-        holder.tvTrangThai.setText("Trạng thái: " + mucTieu.getTrangthai());
+        if(mucTieu.getTrangthai().equals("1")){
+            holder.tvTrangThai.setText("Trạng thái: Đã hoàn thành");
+        }else{
+            holder.tvTrangThai.setText("Trạng thái: Chưa hoàn thành");
+        }
 
         // Xử lý sự kiện khi nhấn vào nút chỉnh sửa
         holder.btnEdit.setOnClickListener(v -> {
             // Thực hiện hành động khi nhấn vào nút chỉnh sửa
             // Ví dụ: hiển thị một thông báo
+            Bundle bundle = new Bundle();
+            bundle.putInt("MucTieuId", mucTieu.getMa());
             NavController navController = Navigation.findNavController(v);
-            navController.navigate(R.id.action_nav_MucTieu_to_nav_UpdateMucTieu);
-            Toast.makeText(context, "Chỉnh sửa: " + mucTieu.getTen(), Toast.LENGTH_SHORT).show();
+            navController.navigate(R.id.action_nav_MucTieu_to_nav_UpdateMucTieu, bundle);
+            Toast.makeText(context, "Chỉnh sửa: " + mucTieu.getNoidung(), Toast.LENGTH_SHORT).show();
 
             // Thêm các thao tác khác tùy vào yêu cầu của bạn, ví dụ mở dialog hoặc intent
         });

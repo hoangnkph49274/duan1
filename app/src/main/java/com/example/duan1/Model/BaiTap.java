@@ -1,4 +1,4 @@
-package com.example.duan1.Adapter;
+package com.example.duan1.Model;
 
 import java.io.Serializable;
 

@@ -1,7 +1,6 @@
 package com.example.duan1.UI;
 
 import android.os.Bundle;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -9,14 +8,14 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.duan1.Adapter.LichHoc;
+import com.example.duan1.Model.LichHoc;
 import com.example.duan1.Adapter.LichHocAdapter;
 import com.example.duan1.R;
+import com.example.duan1.DAO.LichHocDAO;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
@@ -25,8 +24,9 @@ import java.util.List;
 public class LichHocFragment extends Fragment {
     private RecyclerView recyclerView;
     private LichHocAdapter adapter;
-    private List<LichHoc> lichHocList;
+    private ArrayList<LichHoc> lichHocList;
     private FloatingActionButton fabAdd;
+    private LichHocDAO lichHocDAO;
 
     @Nullable
     @Override
@@ -40,16 +40,17 @@ public class LichHocFragment extends Fragment {
         fabAdd = view.findViewById(R.id.fabAddLichHoc);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        // Khởi tạo dữ liệu mẫu
-        lichHocList = new ArrayList<>();
-        lichHocList.add(new LichHoc("Buoi1", "11/12/2024", "14h", "Cô Thu", "Lập trình C", "Đã đi học"));
-        lichHocList.add(new LichHoc("Buoi2", "12/12/2024", "10h", "Thầy Sơn", "Lập trình Java", "Chưa học"));
-        // Thêm các phần tử khác nếu cần...
+        // Khởi tạo DAO
+        lichHocDAO = new LichHocDAO(getContext());
+
+        // Lấy dữ liệu từ DAO
+        lichHocList = (ArrayList<LichHoc>) lichHocDAO.getAllLichHoc();
 
         // Khởi tạo Adapter và gán vào RecyclerView
         adapter = new LichHocAdapter(lichHocList);
         recyclerView.setAdapter(adapter);
 
+        // Lắng nghe sự kiện nhấn FloatingActionButton
         fabAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -61,6 +62,8 @@ public class LichHocFragment extends Fragment {
         return view;
     }
 
-
-
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+    }
 }

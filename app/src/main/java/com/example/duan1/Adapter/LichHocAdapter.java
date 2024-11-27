@@ -1,5 +1,6 @@
 package com.example.duan1.Adapter;
 
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +12,8 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.duan1.Adapter.LichHoc;
+import com.example.duan1.DAO.MonHocDAO;
+import com.example.duan1.Model.LichHoc;
 import com.example.duan1.R;
 
 import java.util.List;
@@ -39,12 +41,20 @@ public class LichHocAdapter extends RecyclerView.Adapter<LichHocAdapter.LichHocV
         holder.tvNgayHoc.setText("Ngày học: " + lichHoc.getNgay());
         holder.tvGioHoc.setText("Giờ học: " + lichHoc.getGio());
         holder.tvGiangVien.setText("Giảng viên: " + lichHoc.getGvien());
-        holder.tvMonHoc.setText("Môn: " + lichHoc.getMon());
-        holder.tvTrangThai.setText("Trạng thái: " + lichHoc.getTrangThai());
+        MonHocDAO monHocDAO = new MonHocDAO(holder.itemView.getContext());
+        String tenMonHoc = monHocDAO.getTenMonHocByMa(lichHoc.getMon());
+        holder.tvMonHoc.setText("Môn học: " + tenMonHoc);
+        if (lichHoc.getTrangThai().equals("1")) {
+            holder.tvTrangThai.setText("Trạng thái: Đã hoàn thành");
+        } else {
+            holder.tvTrangThai.setText("Trạng thái: Chưa hoàn thành");
+        }
 
         holder.btnEdit.setOnClickListener(v -> {
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("lichHoc", lichHoc);
             NavController navController = Navigation.findNavController(v);
-            navController.navigate(R.id.action_nav_LichHoc_to_nav_UpdateLichHoc);
+            navController.navigate(R.id.action_nav_LichHoc_to_nav_UpdateLichHoc,bundle);
         });
     }
 

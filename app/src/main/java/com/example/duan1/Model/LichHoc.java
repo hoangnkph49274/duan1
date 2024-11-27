@@ -1,16 +1,19 @@
-package com.example.duan1.Adapter;
+package com.example.duan1.Model;
 
 import java.io.Serializable;
 
 public class LichHoc implements Serializable {
-    String ma;
+    int ma;
     String ngay;
     String gio;
     String Gvien;
-    String mon;
+    int mon;
     String TrangThai;
 
-    public LichHoc(String ma, String ngay, String gio, String gvien, String mon, String trangThai) {
+    public LichHoc() {
+    }
+
+    public LichHoc(int ma, String ngay, String gio, String gvien, int mon, String trangThai) {
         this.ma = ma;
         this.ngay = ngay;
         this.gio = gio;
@@ -19,11 +22,11 @@ public class LichHoc implements Serializable {
         TrangThai = trangThai;
     }
 
-    public String getMa() {
+    public int getMa() {
         return ma;
     }
 
-    public void setMa(String ma) {
+    public void setMa(int ma) {
         this.ma = ma;
     }
 
@@ -51,11 +54,11 @@ public class LichHoc implements Serializable {
         Gvien = gvien;
     }
 
-    public String getMon() {
+    public int getMon() {
         return mon;
     }
 
-    public void setMon(String mon) {
+    public void setMon(int mon) {
         this.mon = mon;
     }
 

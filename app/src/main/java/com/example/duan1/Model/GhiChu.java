@@ -1,18 +1,16 @@
-package com.example.duan1.Adapter;
+package com.example.duan1.Model;
 
 import java.io.Serializable;
 
-public class MucTieu implements Serializable {
+public class GhiChu implements Serializable {
     String ma;
     String ten;
     String ngay;
-    String trangthai;
 
-    public MucTieu(String ma, String ten, String ngay, String trangthai) {
+    public GhiChu(String ma, String ten, String ngay) {
         this.ma = ma;
         this.ten = ten;
         this.ngay = ngay;
-        this.trangthai = trangthai;
     }
 
     public String getMa() {
@@ -37,13 +35,5 @@ public class MucTieu implements Serializable {
 
     public void setNgay(String ngay) {
         this.ngay = ngay;
-    }
-
-    public String getTrangthai() {
-        return trangthai;
-    }
-
-    public void setTrangthai(String trangthai) {
-        this.trangthai = trangthai;
     }
 }

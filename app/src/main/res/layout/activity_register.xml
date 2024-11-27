@@ -6,7 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".RegisterActivity">
+    tools:context=".RegisterActivity"
+    android:background="#ECBAB9">
 
     <TextView
         android:layout_width="wrap_content"
@@ -21,7 +22,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Username: "
+        android:text="Email:: "
         android:textSize="18dp"
         android:textColor="@color/black"
         android:layout_marginLeft="80px"
@@ -39,9 +40,10 @@
         app:boxCornerRadiusBottomEnd="16dp"
         >
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edtUser"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Enter username"
+            android:hint="Enter email"
             android:textSize="18dp"/>
     </com.google.android.material.textfield.TextInputLayout>
     <TextView
@@ -67,6 +69,7 @@
         app:passwordToggleEnabled="true"
         >
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edtPass"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Enter password"
@@ -95,13 +98,14 @@
         app:passwordToggleEnabled="true"
         >
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edtConfirm"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Enter confirm password"
             android:textSize="18dp"/>
     </com.google.android.material.textfield.TextInputLayout>
     <Button
-        android:id="@+id/btnRegister"
+        android:id="@+id/btnDangKy"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Đăng Ký"
@@ -112,7 +116,7 @@
         android:layout_marginHorizontal="50px"
         />
     <Button
-        android:id="@+id/btncancel"
+        android:id="@+id/btnTroLai"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Quay lại"

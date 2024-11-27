@@ -10,7 +10,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.duan1.Adapter.MucTieu;
+import com.example.duan1.DAO.MucTieuDAO;
+import com.example.duan1.Model.MucTieu;
 import com.example.duan1.Adapter.MucTieuAdapter;
 import com.example.duan1.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -34,9 +35,8 @@ public class MucTieuFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         // Tạo dữ liệu mẫu cho mucTieuList
-        mucTieuList = new ArrayList<>();
-        mucTieuList.add(new MucTieu("001", "Đạt sinh viên giỏi", "11/12/2024", "Đã hoàn thành"));
-        mucTieuList.add(new MucTieu("002", "Hoàn thành kì 4", "11/12/2024", "Chưa hoàn thành"));
+        MucTieuDAO mucTieuDAO = new MucTieuDAO(getContext());
+        mucTieuList = mucTieuDAO.getAllMucTieu();
         // Thêm các mục tiêu khác tại đây
 
         adapter = new MucTieuAdapter(getContext(), mucTieuList);

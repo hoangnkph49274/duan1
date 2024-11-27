@@ -15,7 +15,7 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.duan1.Adapter.GhiChu;
+import com.example.duan1.Model.GhiChu;
 import com.example.duan1.R;
 
 import java.util.List;

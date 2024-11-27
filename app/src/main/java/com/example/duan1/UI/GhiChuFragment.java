@@ -12,10 +12,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.duan1.Adapter.GhiChu;
+import com.example.duan1.Model.GhiChu;
 import com.example.duan1.Adapter.GhiChuAdapter;
-import com.example.duan1.Adapter.MonHoc;
-import com.example.duan1.Adapter.MonHocAdapter;
 import com.example.duan1.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 

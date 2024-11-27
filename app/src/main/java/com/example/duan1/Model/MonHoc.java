@@ -1,15 +1,21 @@
-package com.example.duan1.Adapter;
+package com.example.duan1.Model;
 
 import java.io.Serializable;
 
 public class MonHoc implements Serializable {
-    String ma;
+    int ma;
     String ten;
     int soTC;
     String GiangVien;
 
-    public MonHoc(String ma, String ten, int soTC, String GiangVien) {
+    public MonHoc(int ma, String ten, int soTC, String GiangVien) {
         this.ma = ma;
+        this.ten = ten;
+        this.soTC = soTC;
+        this.GiangVien = GiangVien;
+    }
+
+    public MonHoc(String ten, int soTC, String GiangVien) {
         this.ten = ten;
         this.soTC = soTC;
         this.GiangVien = GiangVien;
@@ -19,11 +25,12 @@ public class MonHoc implements Serializable {
         this.ten = ten;
     }
 
-    public String getMa() {
+
+    public int getMa() {
         return ma;
     }
 
-    public void setMa(String ma) {
+    public void setMa(int ma) {
         this.ma = ma;
     }
 

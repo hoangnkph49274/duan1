@@ -1,15 +1,18 @@
-package com.example.duan1.Adapter;
+package com.example.duan1.Model;
 
 import java.io.Serializable;
 
 public class TaiLieu implements Serializable {
-    String ma;
+    int ma;
     String ten;
     String loai;
     String Ddan;
-    String mon;
+    int mon;
 
-    public TaiLieu(String ma, String ten, String loai, String ddan, String mon) {
+    public TaiLieu() {
+    }
+
+    public TaiLieu(int ma, String ten, String loai, String ddan, int mon) {
         this.ma = ma;
         this.ten = ten;
         this.loai = loai;
@@ -17,11 +20,11 @@ public class TaiLieu implements Serializable {
         this.mon = mon;
     }
 
-    public String getMa() {
+    public int getMa() {
         return ma;
     }
 
-    public void setMa(String ma) {
+    public void setMa(int ma) {
         this.ma = ma;
     }
 
@@ -49,11 +52,11 @@ public class TaiLieu implements Serializable {
         Ddan = ddan;
     }
 
-    public String getMon() {
+    public int getMon() {
         return mon;
     }
 
-    public void setMon(String mon) {
+    public void setMon(int mon) {
         this.mon = mon;
     }
 }

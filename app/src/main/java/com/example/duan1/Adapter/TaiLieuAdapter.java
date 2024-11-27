@@ -1,7 +1,9 @@
 package com.example.duan1.Adapter;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +15,10 @@ import androidx.annotation.NonNull;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
- // Đảm bảo bạn đã định nghĩa lớp TaiLieu cho các đối tượng tài liệu
+
+import com.example.duan1.DAO.MonHocDAO;
+import com.example.duan1.DAO.TaiLieuDAO;
+import com.example.duan1.Model.TaiLieu;
 import com.example.duan1.R;
 
 import java.util.List;
@@ -21,9 +26,13 @@ import java.util.List;
 public class TaiLieuAdapter extends RecyclerView.Adapter<TaiLieuAdapter.TaiLieuViewHolder> {
 
     private List<TaiLieu> taiLieuList;
+    private TaiLieuDAO taiLieuDAO;
+    private Context context;
 
-    public TaiLieuAdapter(List<TaiLieu> taiLieuList) {
+    public TaiLieuAdapter(Context context, List<TaiLieu> taiLieuList) {
+        this.context = context;
         this.taiLieuList = taiLieuList;
+        this.taiLieuDAO = new TaiLieuDAO(context); // Khởi tạo DAO
     }
 
     @NonNull
@@ -42,37 +51,49 @@ public class TaiLieuAdapter extends RecyclerView.Adapter<TaiLieuAdapter.TaiLieuV
         holder.tvName.setText("Tên tài liệu: " + taiLieu.getTen());
         holder.tvLoai.setText("Loại tài liệu: " + taiLieu.getLoai());
         holder.tvDdan.setText("Đường dẫn: " + taiLieu.getDdan());
-        holder.tvMon.setText("Môn: " + taiLieu.getMon());
+
+        // Lấy tên môn học từ maMonHoc
+        MonHocDAO monHocDAO = new MonHocDAO(context);
+        String tenMonHoc = monHocDAO.getTenMonHocByMa(taiLieu.getMon());
+        holder.tvMon.setText("Tên môn học: " + tenMonHoc);
 
         // Xử lý sự kiện khi nhấn nút "Xem"
         holder.btnXem.setOnClickListener(v -> {
             NavController navController = Navigation.findNavController(v);
-            navController.navigate(R.id.action_nav_QlyTaiLieu_to_nav_XemTaiLieu);
+
+            // Truyền dữ liệu vào bundle để xem chi tiết
+            Bundle bundle = new Bundle();
+            bundle.putInt("maTaiLieu", taiLieu.getMa());
+            bundle.putString("tenTaiLieu", taiLieu.getTen());
+            bundle.putString("loaiTaiLieu", taiLieu.getLoai());
+            bundle.putString("duongDan", taiLieu.getDdan());
+            bundle.putInt("maMonHoc", taiLieu.getMon());
+
+            navController.navigate(R.id.action_nav_QlyTaiLieu_to_nav_XemTaiLieu, bundle);
         });
 
         // Xử lý sự kiện khi nhấn nút "Xóa"
         holder.btnXoa.setOnClickListener(v -> {
-            AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
+            AlertDialog.Builder builder = new AlertDialog.Builder(context);
             builder.setTitle("Cảnh báo");
             builder.setIcon(R.drawable.iconwarning);
-            builder.setMessage("Bạn có chắc chắn muốn xóa chứ ?");
-            builder.setPositiveButton("Có", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    Toast.makeText(builder.getContext(), "Xóa Thành Công", Toast.LENGTH_SHORT).show();
-                    dialog.dismiss();
+            builder.setMessage("Bạn có chắc chắn muốn xóa tài liệu này?");
+            builder.setPositiveButton("Có", (dialog, which) -> {
+                int result = taiLieuDAO.deleteTaiLieu(taiLieu.getMa());
+                if (result > 0) {
+                    taiLieuList.remove(position);
+                    notifyItemRemoved(position);
+                    Toast.makeText(context, "Xóa thành công!", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(context, "Xóa thất bại!", Toast.LENGTH_SHORT).show();
                 }
+                dialog.dismiss();
             });
-            builder.setNegativeButton("Không", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-
-                }
-            });
-            AlertDialog dialog = builder.create();
-            dialog.show();
+            builder.setNegativeButton("Không", (dialog, which) -> dialog.dismiss());
+            builder.create().show();
         });
     }
+
 
     @Override
     public int getItemCount() {

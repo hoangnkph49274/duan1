@@ -32,7 +32,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Enter ma mon"
-            android:textSize="18dp"/>
+            android:textSize="18dp"
+            android:id="@+id/edtMaMon"
+            android:enabled="false"/>
     </com.google.android.material.textfield.TextInputLayout>
     <TextView
         android:layout_width="wrap_content"
@@ -56,6 +58,7 @@
         app:boxCornerRadiusBottomEnd="16dp"
         >
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edtTenMon"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Enter ten mon"
@@ -82,6 +85,7 @@
         app:boxCornerRadiusBottomEnd="16dp"
         >
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edtSoTinChi"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Enter so tin chi"
@@ -110,12 +114,14 @@
 
         >
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edtGiangVien"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Enter giang vien"
             android:textSize="18dp"/>
     </com.google.android.material.textfield.TextInputLayout>
     <Button
+        android:id="@+id/btnUpdateMonHoc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"

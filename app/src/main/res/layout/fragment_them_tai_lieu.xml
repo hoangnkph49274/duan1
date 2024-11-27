@@ -7,33 +7,7 @@
     tools:context=".TaiLieu.ThemTaiLieuFragment"
     android:orientation="vertical">
 
-    <TextView
-        android:layout_marginTop="100dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Mã tài liệu: "
-        android:textSize="18dp"
-        android:textColor="@color/black"
-        android:layout_marginLeft="80px"
-        android:layout_marginBottom="30px"/>
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="80px"
-        app:boxBackgroundMode="outline"
-        app:boxStrokeColor="#000000"
-        app:boxBackgroundColor="#FFFFFF"
-        app:boxCornerRadiusTopStart="16dp"
-        app:boxCornerRadiusTopEnd="16dp"
-        app:boxCornerRadiusBottomStart="16dp"
-        app:boxCornerRadiusBottomEnd="16dp"
-        >
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Nhap tai lieu"
-            android:textSize="18dp"/>
-    </com.google.android.material.textfield.TextInputLayout>
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -42,7 +16,7 @@
         android:textColor="@color/black"
         android:layout_marginLeft="80px"
         android:layout_marginBottom="30px"
-        android:layout_marginTop="30px"/>
+        android:layout_marginTop="80px"/>
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -56,6 +30,7 @@
         app:boxCornerRadiusBottomEnd="16dp"
         >
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etTenTaiLieu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Nhap ten tai lieu"
@@ -71,21 +46,25 @@
         android:layout_marginBottom="30px"
         android:layout_marginTop="30px"/>
     <RadioGroup
+        android:id="@+id/rgLoaiTaiLieu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_marginHorizontal="80px">
         <RadioButton
+            android:id="@+id/rbBaiGiang"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Bài giảng"
-            android:textSize="18dp"/>
+            android:textSize="18dp" />
+
         <RadioButton
+            android:id="@+id/rbThamKhao"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Tham khảo"
             android:textSize="18dp"
-            android:layout_marginLeft="40dp"/>
+            android:layout_marginLeft="40dp" />
     </RadioGroup>
     <TextView
         android:layout_width="wrap_content"
@@ -105,14 +84,16 @@
         app:boxCornerRadiusTopStart="16dp"
         app:boxCornerRadiusTopEnd="16dp"
         app:boxCornerRadiusBottomStart="16dp"
-        app:boxCornerRadiusBottomEnd="16dp"
-        >
+        app:boxCornerRadiusBottomEnd="16dp">
+
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etDuongDan"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Nhap link duong dan"
+            android:hint="Nhập link đường dẫn"
             android:textSize="18dp"/>
     </com.google.android.material.textfield.TextInputLayout>
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -134,10 +115,11 @@
         app:boxCornerRadiusBottomStart="16dp"
         app:boxCornerRadiusBottomEnd="16dp"/>
     <Button
+        android:id="@+id/btnAddTaiLieu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="30dp"
-        android:text="Sửa"/>
+        android:text="Thêm"/>
 
 </LinearLayout>

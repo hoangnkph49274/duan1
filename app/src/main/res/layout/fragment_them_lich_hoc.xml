@@ -8,33 +8,6 @@
     android:orientation="vertical">
 
     <TextView
-        android:layout_marginTop="100dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Mã Lịch học: "
-        android:textSize="18dp"
-        android:textColor="@color/black"
-        android:layout_marginLeft="80px"
-        android:layout_marginBottom="30px"/>
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="80px"
-        app:boxBackgroundMode="outline"
-        app:boxStrokeColor="#000000"
-        app:boxBackgroundColor="#FFFFFF"
-        app:boxCornerRadiusTopStart="16dp"
-        app:boxCornerRadiusTopEnd="16dp"
-        app:boxCornerRadiusBottomStart="16dp"
-        app:boxCornerRadiusBottomEnd="16dp"
-        >
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Nhap ma lich hoc"
-            android:textSize="18dp"/>
-    </com.google.android.material.textfield.TextInputLayout>
-    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Ngày học:  "
@@ -42,7 +15,7 @@
         android:textColor="@color/black"
         android:layout_marginLeft="80px"
         android:layout_marginBottom="30px"
-        android:layout_marginTop="30px"/>
+        android:layout_marginTop="80px"/>
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -56,6 +29,7 @@
         app:boxCornerRadiusBottomEnd="16dp"
         >
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edtNgay"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Nhap ngay hoc"
@@ -82,9 +56,37 @@
         app:boxCornerRadiusBottomEnd="16dp"
         >
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edtGio"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Nhap gio hoc"
+            android:textSize="18dp"/>
+    </com.google.android.material.textfield.TextInputLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Giảng Viên: "
+        android:textSize="18dp"
+        android:textColor="@color/black"
+        android:layout_marginLeft="80px"
+        android:layout_marginBottom="30px"/>
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="80px"
+        app:boxBackgroundMode="outline"
+        app:boxStrokeColor="#000000"
+        app:boxBackgroundColor="#FFFFFF"
+        app:boxCornerRadiusTopStart="16dp"
+        app:boxCornerRadiusTopEnd="16dp"
+        app:boxCornerRadiusBottomStart="16dp"
+        app:boxCornerRadiusBottomEnd="16dp"
+        >
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edtGiangVien"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nhập giảng viên"
             android:textSize="18dp"/>
     </com.google.android.material.textfield.TextInputLayout>
     <TextView
@@ -130,12 +132,16 @@
 
         >
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edtTrangThai"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Chua tham gia"
-            android:textSize="18dp"/>
+            android:hint="Chưa tham gia"
+            android:textSize="18dp"
+            android:focusable="false"
+            android:cursorVisible="false"/>
     </com.google.android.material.textfield.TextInputLayout>
     <Button
+        android:id="@+id/btnAddLichHoc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"

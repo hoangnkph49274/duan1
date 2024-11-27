@@ -2,6 +2,8 @@ package com.example.duan1.UI;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -12,16 +14,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.duan1.Adapter.MonHoc;
-import com.example.duan1.Adapter.MonHocAdapter;
-import com.example.duan1.Adapter.TaiLieu;
 import com.example.duan1.Adapter.TaiLieuAdapter;
+import com.example.duan1.DAO.TaiLieuDAO;
+import com.example.duan1.Model.TaiLieu;
 import com.example.duan1.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import java.util.ArrayList;
 import java.util.List;
-
 
 public class TaiLieuFragment extends Fragment {
 
@@ -29,6 +28,7 @@ public class TaiLieuFragment extends Fragment {
     private FloatingActionButton fabAdd;
     private TaiLieuAdapter adapter;
     private List<TaiLieu> taiLieuList;
+    private TaiLieuDAO taiLieuDAO;
 
     public TaiLieuFragment() {
         // Required empty public constructor
@@ -38,20 +38,25 @@ public class TaiLieuFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_tai_lieu, container, false);
+        return inflater.inflate(R.layout.fragment_tai_lieu, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
 
         // Initialize RecyclerView and FloatingActionButton
         recyclerView = view.findViewById(R.id.recyclerViewTaiLieu);
         fabAdd = view.findViewById(R.id.fabAddTaiLieu);
 
-        // Initialize data
-        taiLieuList = new ArrayList<>();
-        taiLieuList.add(new TaiLieu("TL1","Lập trình C","Bài giảng","https://www.google.com/","Lập trình C"));
-        taiLieuList.add(new TaiLieu("TL2","Lập trình Java","Tham khảo","https://www.google.com/","Lập trình Java"));
-        // Add more courses as needed
+        // Initialize TaiLieuDAO
+        taiLieuDAO = new TaiLieuDAO(requireContext());
+
+        // Load data from the database
+        taiLieuList = taiLieuDAO.getAllTaiLieu();
 
         // Set up the RecyclerView
-        adapter = new TaiLieuAdapter(taiLieuList);
+        adapter = new TaiLieuAdapter(getContext(),taiLieuList);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(adapter);
 
@@ -60,7 +65,5 @@ public class TaiLieuFragment extends Fragment {
             NavController navController = Navigation.findNavController(view);
             navController.navigate(R.id.action_nav_QlyTaiLieu_to_nav_ThemTaiLieu);
         });
-
-        return view;
     }
 }

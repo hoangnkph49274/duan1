@@ -8,7 +8,7 @@
     android:orientation="vertical">
 
     <TextView
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="50dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Mã Lịch học: "
@@ -29,10 +29,13 @@
         app:boxCornerRadiusBottomEnd="16dp"
         >
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edtMaLichHoc"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Nhap ma lich hoc"
-            android:textSize="18dp"/>
+            android:textSize="18dp"
+            android:focusable="false"
+            android:cursorVisible="false"/>
     </com.google.android.material.textfield.TextInputLayout>
     <TextView
         android:layout_width="wrap_content"
@@ -56,10 +59,13 @@
         app:boxCornerRadiusBottomEnd="16dp"
         >
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edtNgay"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Nhap ngay hoc"
-            android:textSize="18dp"/>
+            android:textSize="18dp"
+            android:focusable="false"
+            android:cursorVisible="false"/>
     </com.google.android.material.textfield.TextInputLayout>
     <TextView
         android:layout_width="wrap_content"
@@ -68,7 +74,8 @@
         android:textSize="18dp"
         android:textColor="@color/black"
         android:layout_marginLeft="80px"
-        android:layout_marginBottom="30px"/>
+        android:layout_marginBottom="30px"
+        android:layout_marginTop="10dp"/>
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -82,10 +89,13 @@
         app:boxCornerRadiusBottomEnd="16dp"
         >
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edtGio"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Nhap gio hoc"
-            android:textSize="18dp"/>
+            android:textSize="18dp"
+            android:focusable="false"
+            android:cursorVisible="false"/>
     </com.google.android.material.textfield.TextInputLayout>
     <TextView
         android:layout_width="wrap_content"
@@ -94,7 +104,8 @@
         android:textSize="18dp"
         android:textColor="@color/black"
         android:layout_marginLeft="80px"
-        android:layout_marginBottom="30px"/>
+        android:layout_marginBottom="30px"
+        android:layout_marginTop="10dp"/>
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -109,10 +120,44 @@
 
         >
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edtMon"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Nhập môn "
-            android:textSize="18dp"/>
+            android:textSize="18dp"
+            android:focusable="false"
+            android:cursorVisible="false"/>
+    </com.google.android.material.textfield.TextInputLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Giảng Viên: "
+        android:textSize="18dp"
+        android:textColor="@color/black"
+        android:layout_marginLeft="80px"
+        android:layout_marginBottom="30px"
+        android:layout_marginTop="10dp"/>
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="80px"
+        app:boxBackgroundMode="outline"
+        app:boxStrokeColor="#000000"
+        app:boxBackgroundColor="#FFFFFF"
+        app:boxCornerRadiusTopStart="16dp"
+        app:boxCornerRadiusTopEnd="16dp"
+        app:boxCornerRadiusBottomStart="16dp"
+        app:boxCornerRadiusBottomEnd="16dp"
+
+        >
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edtGVien"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nhập Giảng viên "
+            android:textSize="18dp"
+            android:focusable="false"
+            android:cursorVisible="false"/>
     </com.google.android.material.textfield.TextInputLayout>
     <TextView
         android:layout_width="wrap_content"
@@ -136,11 +181,6 @@
         app:boxCornerRadiusBottomStart="16dp"
         app:boxCornerRadiusBottomEnd="16dp"/>
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="30dp"
-        android:text="Sửa"/>
+
 
 </LinearLayout>

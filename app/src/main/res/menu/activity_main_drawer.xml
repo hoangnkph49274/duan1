@@ -29,4 +29,29 @@
             android:id="@+id/nav_MucTieu"
             android:title="Mục Tiêu" />
     </group>
+
+    <item
+        android:enabled="false"
+        android:title="" />
+    <item
+        android:enabled="false"
+        android:title="" />
+    <item
+        android:enabled="false"
+        android:title="" />
+    <item
+        android:enabled="false"
+        android:title="" />
+    <item
+        android:enabled="false"
+        android:title="" />
+    <item
+        android:enabled="false"
+        android:title="" />
+
+    <item
+        android:id="@+id/Logout"
+        android:title="Đăng Xuất"
+        android:icon="@drawable/icon_logout"
+        />
 </menu>

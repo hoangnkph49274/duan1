@@ -30,11 +30,14 @@
         app:boxCornerRadiusBottomEnd="16dp"
         >
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edtMaMucTieu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Nhap ma lich hoc"
+            android:hint="Nhập mã mục tiêu"
             android:text="svg"
-            android:textSize="18dp"/>
+            android:textSize="18dp"
+            android:focusable="false"
+            android:cursorVisible="false"/>
     </com.google.android.material.textfield.TextInputLayout>
     <TextView
         android:layout_width="wrap_content"
@@ -56,13 +59,18 @@
         app:boxCornerRadiusTopEnd="16dp"
         app:boxCornerRadiusBottomStart="16dp"
         app:boxCornerRadiusBottomEnd="16dp"
+
         >
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edtNoidungMucTieu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Nhap tên mục tiêu"
             android:text="Đạt sinh viên giỏi"
-            android:textSize="18dp"/>
+            android:textSize="18dp"
+            android:focusable="false"
+            android:cursorVisible="false"
+            />
     </com.google.android.material.textfield.TextInputLayout>
     <TextView
         android:layout_width="wrap_content"
@@ -85,11 +93,44 @@
         app:boxCornerRadiusBottomEnd="16dp"
         >
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edtNgayBatDau"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Nhap ngày bắt đầu"
             android:text="11/12/2024"
-            android:textSize="18dp"/>
+            android:textSize="18dp"
+            android:focusable="false"
+            android:cursorVisible="false"/>
+    </com.google.android.material.textfield.TextInputLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ngày kết thúc: "
+        android:textSize="18dp"
+        android:textColor="@color/black"
+        android:layout_marginLeft="80px"
+        android:layout_marginBottom="30px"/>
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="80px"
+        app:boxBackgroundMode="outline"
+        app:boxStrokeColor="#000000"
+        app:boxBackgroundColor="#FFFFFF"
+        app:boxCornerRadiusTopStart="16dp"
+        app:boxCornerRadiusTopEnd="16dp"
+        app:boxCornerRadiusBottomStart="16dp"
+        app:boxCornerRadiusBottomEnd="16dp"
+        >
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edtNgayKetThuc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nhap ngày kết thúc"
+            android:text="11/12/2024"
+            android:textSize="18dp"
+            android:focusable="false"
+            android:cursorVisible="false"/>
     </com.google.android.material.textfield.TextInputLayout>
     <TextView
         android:layout_width="wrap_content"
@@ -114,6 +155,7 @@
         app:boxCornerRadiusBottomEnd="16dp"/>
 
     <Button
+        android:id="@+id/btnUpateMucTieu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"

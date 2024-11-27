@@ -45,7 +45,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Đường dẫn: https://200lab.io/blog/lap-trinh-c-co-ban/?srsltid=AfmBOopZUxFI4VZqfVz4-xVoKTsUZuyOVV-xJtY4fpl1bGVk0yLkN52G"
-        android:textSize="14sp"
+        android:textSize="18sp"
         android:textColor="#1E88E5"
         android:autoLink="web"
         android:layout_marginBottom="8dp" />
