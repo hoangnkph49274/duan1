@@ -7,9 +7,9 @@ public class BaiTap implements Serializable {
     String ten;
     String hanNop;
     String TrangThai;
-    String mon;
+    int mon;
 
-    public BaiTap(String ma, String ten, String hanNop, String trangThai, String mon) {
+    public BaiTap(String ma, String ten, String hanNop, String trangThai, int mon) {
         this.ma = ma;
         this.ten = ten;
         this.hanNop = hanNop;
@@ -49,11 +49,11 @@ public class BaiTap implements Serializable {
         TrangThai = trangThai;
     }
 
-    public String getMon() {
+    public int getMon() {
         return mon;
     }
 
-    public void setMon(String mon) {
+    public void setMon(int mon) {
         this.mon = mon;
     }
 }
