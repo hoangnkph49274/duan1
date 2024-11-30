@@ -1,5 +1,6 @@
 package com.example.duan1.UI;
 
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,8 +14,9 @@ import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.duan1.Model.BaiTap;
 import com.example.duan1.Adapter.BaiTapAdapter;
+import com.example.duan1.DAO.BaiTapDAO;
+import com.example.duan1.Model.BaiTap;
 import com.example.duan1.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -27,6 +29,8 @@ public class BaiTapFragment extends Fragment {
     private BaiTapAdapter adapter;
     private List<BaiTap> baiTapList;
     private FloatingActionButton fabAdd;
+    private BaiTapDAO baiTapDAO;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -34,15 +38,15 @@ public class BaiTapFragment extends Fragment {
 
         recyclerView = view.findViewById(R.id.recyclerViewBaiTap);
         fabAdd = view.findViewById(R.id.fabAddBaitap);
+
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        baiTapList = new ArrayList<>();
-        baiTapList.add(new BaiTap("BT1", "Lập trình C", "11/12/2024", "Đã hoàn thành", "Lập trình C"));
-        baiTapList.add(new BaiTap("BT2", "Cấu trúc dữ liệu", "15/12/2024", "Chưa hoàn thành", "Khoa học máy tính"));
+        baiTapDAO = new BaiTapDAO(getContext());
+        baiTapList = loadBaiTapFromDatabase();
 
         adapter = new BaiTapAdapter(baiTapList);
-
         recyclerView.setAdapter(adapter);
+
         fabAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -50,6 +54,35 @@ public class BaiTapFragment extends Fragment {
                 navController.navigate(R.id.action_nav_QlyBaiTap_to_nav_ThemBaiTap);
             }
         });
+
         return view;
     }
+    private List<BaiTap> loadBaiTapFromDatabase() {
+        List<BaiTap> list = new ArrayList<>();
+        Cursor cursor = null;
+        try {
+            cursor = baiTapDAO.getAllBaiTap();
+            if (cursor != null && cursor.moveToFirst()) {
+                do {
+                    String tenBaiTap = cursor.getString(cursor.getColumnIndexOrThrow("TenBaiTap"));
+                    String hanNop = cursor.getString(cursor.getColumnIndexOrThrow("HanNop"));
+                    String trangThai = cursor.getString(cursor.getColumnIndexOrThrow("TrangThai"));
+                    String noiDungBaiTap = cursor.getString(cursor.getColumnIndexOrThrow("NoiDungBaiTap"));
+                    int maMonHoc = cursor.getInt(cursor.getColumnIndexOrThrow("MaMonHoc"));
+
+                    list.add(new BaiTap(tenBaiTap, hanNop, trangThai, noiDungBaiTap, maMonHoc));
+                } while (cursor.moveToNext());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
+        }
+        return list;
+    }
+
+
+
 }
