@@ -100,6 +100,11 @@ public class TaiLieuAdapter extends RecyclerView.Adapter<TaiLieuAdapter.TaiLieuV
         return taiLieuList.size();
     }
 
+    public void updateData(List<TaiLieu> taiLieuList) {
+        this.taiLieuList = taiLieuList;
+        notifyDataSetChanged();
+    }
+
     public static class TaiLieuViewHolder extends RecyclerView.ViewHolder {
         TextView tvMa, tvName, tvLoai, tvDdan, tvMon;
         ImageView btnXem, btnXoa;

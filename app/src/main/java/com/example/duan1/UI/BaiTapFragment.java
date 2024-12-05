@@ -2,9 +2,13 @@ package com.example.duan1.UI;
 
 import android.database.Cursor;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -30,6 +34,8 @@ public class BaiTapFragment extends Fragment {
     private List<BaiTap> baiTapList;
     private FloatingActionButton fabAdd;
     private BaiTapDAO baiTapDAO;
+    private EditText editSearchBaiTap;
+    private ImageView btnSearchBaiTap;
 
     @Nullable
     @Override
@@ -38,6 +44,8 @@ public class BaiTapFragment extends Fragment {
 
         recyclerView = view.findViewById(R.id.recyclerViewBaiTap);
         fabAdd = view.findViewById(R.id.fabAddBaitap);
+        editSearchBaiTap = view.findViewById(R.id.edtSearchBaiTap);
+        btnSearchBaiTap = view.findViewById(R.id.btnSearchBaiTap);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
@@ -54,6 +62,19 @@ public class BaiTapFragment extends Fragment {
                 navController.navigate(R.id.action_nav_QlyBaiTap_to_nav_ThemBaiTap);
             }
         });
+        btnSearchBaiTap.setOnClickListener(v -> {
+            String keyword = editSearchBaiTap.getText().toString().trim();
+            if (!keyword.isEmpty()) {
+                List<BaiTap> baiTapList = baiTapDAO.searchBaiTap(keyword);
+                Log.d("zzzzzzzzzzzzzz", ""+baiTapList.size());
+                adapter.updateData(baiTapList);
+                adapter.notifyDataSetChanged();
+            }else{
+                List<BaiTap> List = loadBaiTapFromDatabase();
+                adapter.updateData(List);
+                adapter.notifyDataSetChanged();
+            }
+        });
 
         return view;
     }
@@ -64,13 +85,14 @@ public class BaiTapFragment extends Fragment {
             cursor = baiTapDAO.getAllBaiTap();
             if (cursor != null && cursor.moveToFirst()) {
                 do {
+                    int maBaiTap = cursor.getInt(cursor.getColumnIndexOrThrow("MaBaiTap"));
                     String tenBaiTap = cursor.getString(cursor.getColumnIndexOrThrow("TenBaiTap"));
                     String hanNop = cursor.getString(cursor.getColumnIndexOrThrow("HanNop"));
-                    String trangThai = cursor.getString(cursor.getColumnIndexOrThrow("TrangThai"));
+                    int trangThai = cursor.getInt(cursor.getColumnIndexOrThrow("TrangThai"));
                     String noiDungBaiTap = cursor.getString(cursor.getColumnIndexOrThrow("NoiDungBaiTap"));
                     int maMonHoc = cursor.getInt(cursor.getColumnIndexOrThrow("MaMonHoc"));
 
-                    list.add(new BaiTap(tenBaiTap, hanNop, trangThai, noiDungBaiTap, maMonHoc));
+                    list.add(new BaiTap(maBaiTap,tenBaiTap, hanNop, trangThai, maMonHoc));
                 } while (cursor.moveToNext());
             }
         } catch (Exception e) {

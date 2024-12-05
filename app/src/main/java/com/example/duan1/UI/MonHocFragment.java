@@ -11,6 +11,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.Toast;
+
 import com.example.duan1.Model.MonHoc;
 import com.example.duan1.Adapter.MonHocAdapter;
 import com.example.duan1.R;
@@ -24,6 +28,8 @@ public class MonHocFragment extends Fragment {
     private MonHocAdapter adapter;
     private List<MonHoc> monHocList;
     private NavController navController;
+    private EditText searchMonHoc;
+    private ImageView btnSeachMonHoc;
 
     public MonHocFragment() {
         // Required empty public constructor
@@ -38,10 +44,14 @@ public class MonHocFragment extends Fragment {
         // Initialize RecyclerView and FloatingActionButton
         recyclerView = view.findViewById(R.id.recyclerViewMonHoc);
         fabAdd = view.findViewById(R.id.fabAddMonHoc);
+        searchMonHoc = view.findViewById(R.id.edtSearchMonHoc);
+        btnSeachMonHoc = view.findViewById(R.id.btnSearchMonHoc);
 
         // Lấy dữ liệu từ MonHocDAO
         MonHocDAO monHocDAO = new MonHocDAO(getContext());
         monHocList = monHocDAO.getAllMonHoc();  // Lấy danh sách môn học từ cơ sở dữ liệu
+
+
 
         // Set up the RecyclerView
         adapter = new MonHocAdapter(getContext(),monHocList);
@@ -55,6 +65,19 @@ public class MonHocFragment extends Fragment {
             navController.navigate(R.id.action_nav_QlyMonHoc_to_nav_ThemMonHoc);
         });
 
+        btnSeachMonHoc.setOnClickListener(v -> {
+            String keyword = searchMonHoc.getText().toString().trim();
+            if(!keyword.isEmpty()){
+                List<MonHoc> filteredMonHocList = monHocDAO.searchMonHoc(keyword);
+                adapter.updateData(filteredMonHocList);
+                adapter.notifyDataSetChanged();
+            }else{
+                List<MonHoc> filteredMonHocList = monHocDAO.getAllMonHoc();
+                adapter.updateData(filteredMonHocList);
+                adapter.notifyDataSetChanged();
+            }
+
+        });
         return view;
     }
 }

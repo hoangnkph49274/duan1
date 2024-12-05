@@ -188,6 +188,12 @@ public class ThemLichHocFragment extends Fragment {
 
         // Tạo `PendingIntent` với `FLAG_IMMUTABLE`
         Intent intent = new Intent(getContext(), NotificationReceiver.class);
+        intent.putExtra("title", "Lịch học hôm nay");
+        intent.putExtra("message", "Đừng quên tham gia lớp học lúc "+edtGio.getText().toString());
+
+// Gửi broadcast
+        getContext().sendBroadcast(intent);
+
         PendingIntent pendingIntent = PendingIntent.getBroadcast(
                 getContext(),
                 0,

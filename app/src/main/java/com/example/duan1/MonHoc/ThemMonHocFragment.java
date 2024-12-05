@@ -67,11 +67,11 @@ public class ThemMonHocFragment extends Fragment {
 
         // Insert the MonHoc into the database
         MonHocDAO monHocDAO = new MonHocDAO(getContext());
-        long result = monHocDAO.addMonHoc(tenMonHoc, soTinChi, giangVien); // Assuming addMonHoc method returns the row ID if successful
+        long result = monHocDAO.addMonHoc(tenMonHoc, soTinChi, giangVien);
 
         if (result > 0) {
             // Successfully added, navigate back to the list
-            Toast.makeText(getContext(), "Môn học đã được thêm!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "Môn học đã được thêm kèm điểm và học phí!", Toast.LENGTH_SHORT).show();
             navController = Navigation.findNavController(getView());
             navController.popBackStack(); // Go back to the previous fragment (MonHocFragment)
         } else {
@@ -79,4 +79,5 @@ public class ThemMonHocFragment extends Fragment {
             Toast.makeText(getContext(), "Thêm môn học thất bại!", Toast.LENGTH_SHORT).show();
         }
     }
+
 }

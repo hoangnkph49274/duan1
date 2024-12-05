@@ -42,13 +42,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         setSupportActionBar(binding.appBarMain.toolbar);
-
         drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_QlyMonHoc, R.id.nav_QlyTaiLieu, R.id.nav_LichHoc,R.id.nav_QlyBaiTap ,R.id.nav_GhiChu,R.id.nav_MucTieu,R.id.Logout)
+                R.id.nav_QlyMonHoc, R.id.nav_QlyTaiLieu, R.id.nav_LichHoc,R.id.nav_QlyBaiTap ,R.id.nav_GhiChu,R.id.nav_MucTieu,R.id.Logout,R.id.nav_QlyDiem,R.id.nav_ThongKe)
                 .setOpenableLayout(drawer)
                 .build();
         navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
@@ -79,14 +78,6 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
-        MenuItem searchItem = menu.findItem(R.id.action_search);
-        searchItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(@NonNull MenuItem item) {
-                navController.navigate(R.id.nav_Search);
-                return false;
-            }
-        });
         return true;
     }
 

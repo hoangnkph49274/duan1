@@ -8,33 +8,6 @@
     android:orientation="vertical">
 
     <TextView
-        android:layout_marginTop="100dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Mã Ghi Chú: "
-        android:textSize="18dp"
-        android:textColor="@color/black"
-        android:layout_marginLeft="80px"
-        android:layout_marginBottom="30px"/>
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="80px"
-        app:boxBackgroundMode="outline"
-        app:boxStrokeColor="#000000"
-        app:boxBackgroundColor="#FFFFFF"
-        app:boxCornerRadiusTopStart="16dp"
-        app:boxCornerRadiusTopEnd="16dp"
-        app:boxCornerRadiusBottomStart="16dp"
-        app:boxCornerRadiusBottomEnd="16dp"
-        >
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Nhap ma muc tieu"
-            android:textSize="18dp"/>
-    </com.google.android.material.textfield.TextInputLayout>
-    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Tên ghi chú:  "
@@ -42,7 +15,7 @@
         android:textColor="@color/black"
         android:layout_marginLeft="80px"
         android:layout_marginBottom="30px"
-        android:layout_marginTop="30px"/>
+        android:layout_marginTop="80px"/>
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -56,9 +29,10 @@
         app:boxCornerRadiusBottomEnd="16dp"
         >
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edtTenGhiChu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Nhap ten muc tieu"
+            android:hint="Nhập tên ghi chú"
             android:textSize="18dp"/>
     </com.google.android.material.textfield.TextInputLayout>
     <TextView
@@ -68,7 +42,8 @@
         android:textSize="18dp"
         android:textColor="@color/black"
         android:layout_marginLeft="80px"
-        android:layout_marginBottom="30px"/>
+        android:layout_marginBottom="30px"
+        android:layout_marginTop="30px"/>
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -82,11 +57,33 @@
         app:boxCornerRadiusBottomEnd="16dp"
         >
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edtNgayTao"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Nhap ngay tao"
+            android:hint="Nhập ngày tạo"
             android:textSize="18dp"/>
     </com.google.android.material.textfield.TextInputLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Môn: "
+        android:textSize="18dp"
+        android:textColor="@color/black"
+        android:layout_marginLeft="80px"
+        android:layout_marginBottom="30px"
+        android:layout_marginTop="30px"/>
+    <Spinner
+        android:id="@+id/spinnerMonHoc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="80px"
+        app:boxBackgroundMode="outline"
+        app:boxStrokeColor="#000000"
+        app:boxBackgroundColor="#FFFFFF"
+        app:boxCornerRadiusTopStart="16dp"
+        app:boxCornerRadiusTopEnd="16dp"
+        app:boxCornerRadiusBottomStart="16dp"
+        app:boxCornerRadiusBottomEnd="16dp"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -95,7 +92,8 @@
         android:textColor="@color/black"
         android:layout_marginLeft="80px"
         android:layout_marginBottom="30px"
-        android:layout_marginTop="30px"/>
+        android:layout_marginTop="30px"
+        />
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -110,16 +108,20 @@
 
         >
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edtNoiDungGhiChu"
             android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:hint="Nhap noi dung ghi chu"
+            android:layout_height="wrap_content"
+            android:hint="Nhập nôi dung ghi chú"
+            android:minLines="5"
+            android:gravity="top"
             android:textSize="16dp"
             />
     </com.google.android.material.textfield.TextInputLayout>
     <Button
+        android:id="@+id/btnAddGhiChu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="30dp"
-        android:text="Sửa"/>
+        android:text="Thêm"/>
 </LinearLayout>

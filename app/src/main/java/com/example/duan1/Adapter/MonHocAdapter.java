@@ -94,6 +94,10 @@ public class MonHocAdapter extends RecyclerView.Adapter<MonHocAdapter.MonHocView
             }
         });
     }
+    public void updateData(List<MonHoc> newList) {
+        this.monHocList = newList; // Cập nhật danh sách mới
+        notifyDataSetChanged();   // Thông báo RecyclerView làm mới dữ liệu
+    }
 
     @Override
     public int getItemCount() {

@@ -116,7 +116,6 @@
             android:id="@+id/edtTrangThai"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Nhập trạng thái"
             android:text="Chưa hoàn thành"
             android:textSize="18dp"
             android:focusable="false"

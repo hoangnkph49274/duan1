@@ -2,6 +2,7 @@ package com.example.duan1.Adapter;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,8 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.duan1.DAO.BaiTapDAO;
+import com.example.duan1.DAO.MonHocDAO;
 import com.example.duan1.Model.BaiTap;
 import com.example.duan1.R;
 import java.util.List;
@@ -40,14 +43,28 @@ public class BaiTapAdapter extends RecyclerView.Adapter<BaiTapAdapter.BaiTapView
         holder.tvMa.setText("Mã bài tập: " + baiTap.getMa());
         holder.tvName.setText("Tên bài tập: " + baiTap.getTen());
         holder.tvHanNop.setText("Hạn nộp: " + baiTap.getHanNop());
-        holder.tvTrangThai.setText("Trạng Thái: " + baiTap.getTrangThai());
-        holder.tvMon.setText("Môn: " + baiTap.getMon());
+
+        MonHocDAO monHocDAO = new MonHocDAO(holder.itemView.getContext());
+        String tenMonHoc = monHocDAO.getTenMonHocByMa(baiTap.getMon());
+        holder.tvMon.setText("Môn học: " + tenMonHoc);
+        if (baiTap.getTrangThai()==1) {
+            holder.tvTrangThai.setText("Trạng thái: Đã hoàn thành");
+        } else {
+            holder.tvTrangThai.setText("Trạng thái: Chưa hoàn thành");
+        }
 
         holder.btnXem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Bundle bundle = new Bundle();
+                bundle.putInt("maBaiTap", baiTap.getMa());
+                bundle.putString("tenBaiTap", baiTap.getTen());
+                bundle.putString("hanNop", baiTap.getHanNop());
+                bundle.putInt("maMon", baiTap.getMon());
+
+                // Điều hướng với dữ liệu
                 NavController navController = Navigation.findNavController(v);
-                navController.navigate(R.id.action_nav_QlyBaiTap_to_nav_XemBaiTap);
+                navController.navigate(R.id.action_nav_QlyBaiTap_to_nav_XemBaiTap, bundle);
             }
         });
         holder.btnXoa.setOnClickListener(new View.OnClickListener() {
@@ -60,7 +77,19 @@ public class BaiTapAdapter extends RecyclerView.Adapter<BaiTapAdapter.BaiTapView
                 builder.setPositiveButton("Có", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        Toast.makeText(builder.getContext(), "Xóa Thành Công", Toast.LENGTH_SHORT).show();
+                        BaiTapDAO baiTapDAO = new BaiTapDAO(v.getContext());
+                        int result = baiTapDAO.deleteBaiTap(baiTap.getMa());
+
+                        if (result > 0) {
+                            // Xóa thành công
+                            baiTapList.remove(holder.getAdapterPosition()); // Xóa bài tập khỏi danh sách
+                            notifyItemRemoved(holder.getAdapterPosition()); // Cập nhật RecyclerView
+                            Toast.makeText(v.getContext(), "Xóa bài tập thành công", Toast.LENGTH_SHORT).show();
+                        } else {
+                            // Xóa thất bại
+                            Toast.makeText(v.getContext(), "Xóa bài tập thất bại", Toast.LENGTH_SHORT).show();
+                        }
+
                         dialog.dismiss();
                     }
                 });
@@ -79,6 +108,11 @@ public class BaiTapAdapter extends RecyclerView.Adapter<BaiTapAdapter.BaiTapView
     @Override
     public int getItemCount() {
         return baiTapList.size();
+    }
+
+    public void updateData(List<BaiTap> list) {
+        this.baiTapList = list; // Cập nhật danh sách mới
+        notifyDataSetChanged();
     }
 
     static class BaiTapViewHolder extends RecyclerView.ViewHolder {

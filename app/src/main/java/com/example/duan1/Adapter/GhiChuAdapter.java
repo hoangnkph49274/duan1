@@ -3,6 +3,7 @@ package com.example.duan1.Adapter;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,7 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.duan1.DAO.GhiChuDAO;
 import com.example.duan1.Model.GhiChu;
 import com.example.duan1.R;
 
@@ -46,37 +48,55 @@ public class GhiChuAdapter extends RecyclerView.Adapter<GhiChuAdapter.GhiChuView
         holder.tvNgay.setText("Ngày tạo: " + ghiChu.getNgay());
 
         holder.btnXem.setOnClickListener(v ->{
-            Toast.makeText(context, "Xem ghi chú: " + ghiChu.getMa(), Toast.LENGTH_SHORT).show();
+            Bundle bundle = new Bundle();
+            bundle.putInt("maGhiChu", ghiChu.getMa());  // Mã ghi chú
+            bundle.putString("tenGhiChu", ghiChu.getTen());  // Tên ghi chú
+            bundle.putString("ngayTao", ghiChu.getNgay());  // Ngày tạo
+
+            // Điều hướng và truyền dữ liệu sang fragment khác
             NavController navController = Navigation.findNavController(v);
-            navController.navigate(R.id.action_nav_GhiChu_to_nav_XemGhiChu);
+            navController.navigate(R.id.action_nav_GhiChu_to_nav_XemGhiChu, bundle);
+
         });
 
         holder.btnXoa.setOnClickListener(v -> {
             AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
             builder.setTitle("Cảnh báo");
             builder.setIcon(R.drawable.iconwarning);
-            builder.setMessage("Bạn có chắc chắn muốn xóa chứ ?");
-            builder.setPositiveButton("Có", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    Toast.makeText(builder.getContext(), "Xóa Thành Công", Toast.LENGTH_SHORT).show();
-                    dialog.dismiss();
-                }
-            });
-            builder.setNegativeButton("Không", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
+            builder.setMessage("Bạn có chắc chắn muốn xóa ghi chú này không?");
+            builder.setPositiveButton("Có", (dialog, which) -> {
+                // Xóa ghi chú bằng GhiChuDAO
+                GhiChuDAO ghiChuDAO = new GhiChuDAO(context);
+                int result = ghiChuDAO.deleteGhiChu(ghiChu.getMa());
 
+                if (result > 0) {
+                    // Xóa thành công -> Cập nhật danh sách
+                    ghiChuList.remove(holder.getAdapterPosition());
+                    notifyItemRemoved(holder.getAdapterPosition());
+                    notifyItemRangeChanged(holder.getAdapterPosition(), ghiChuList.size());
+                    Toast.makeText(context, "Xóa thành công", Toast.LENGTH_SHORT).show();
+                } else {
+                    // Xóa thất bại
+                    Toast.makeText(context, "Xóa thất bại", Toast.LENGTH_SHORT).show();
                 }
+                dialog.dismiss();
             });
+            builder.setNegativeButton("Không", (dialog, which) -> dialog.dismiss());
+
             AlertDialog dialog = builder.create();
             dialog.show();
         });
+
     }
 
     @Override
     public int getItemCount() {
         return ghiChuList.size();
+    }
+
+    public void updateData(List<GhiChu> searchResults) {
+        this.ghiChuList = searchResults;
+        notifyDataSetChanged();
     }
 
     public static class GhiChuViewHolder extends RecyclerView.ViewHolder {

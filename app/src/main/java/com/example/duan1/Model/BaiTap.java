@@ -3,13 +3,14 @@ package com.example.duan1.Model;
 import java.io.Serializable;
 
 public class BaiTap implements Serializable {
-    String ma;
+    int ma;
     String ten;
     String hanNop;
-    String TrangThai;
+    int TrangThai;
+    String NoiDung;
     int mon;
 
-    public BaiTap(String ma, String ten, String hanNop, String trangThai, int mon) {
+    public BaiTap(int ma, String ten, String hanNop, int trangThai, int mon) {
         this.ma = ma;
         this.ten = ten;
         this.hanNop = hanNop;
@@ -17,11 +18,18 @@ public class BaiTap implements Serializable {
         this.mon = mon;
     }
 
-    public String getMa() {
+    public BaiTap(String ten, String hanNop, int trangThai, int mon) {
+        this.ten = ten;
+        this.hanNop = hanNop;
+        TrangThai = trangThai;
+        this.mon = mon;
+    }
+
+    public int getMa() {
         return ma;
     }
 
-    public void setMa(String ma) {
+    public void setMa(int ma) {
         this.ma = ma;
     }
 
@@ -41,11 +49,11 @@ public class BaiTap implements Serializable {
         this.hanNop = hanNop;
     }
 
-    public String getTrangThai() {
+    public int getTrangThai() {
         return TrangThai;
     }
 
-    public void setTrangThai(String trangThai) {
+    public void setTrangThai(int trangThai) {
         TrangThai = trangThai;
     }
 

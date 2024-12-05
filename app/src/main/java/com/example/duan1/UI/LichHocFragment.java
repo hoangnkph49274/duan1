@@ -11,6 +11,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.example.duan1.Model.LichHoc;
 import com.example.duan1.Adapter.LichHocAdapter;
@@ -26,6 +29,8 @@ public class LichHocFragment extends Fragment {
     private LichHocAdapter adapter;
     private ArrayList<LichHoc> lichHocList;
     private FloatingActionButton fabAdd;
+    private EditText edtSearchLichHoc;
+    private ImageView btnSearchLichHoc;
     private LichHocDAO lichHocDAO;
 
     @Nullable
@@ -38,6 +43,8 @@ public class LichHocFragment extends Fragment {
         // Khởi tạo RecyclerView
         recyclerView = view.findViewById(R.id.recyclerViewLichHoc);
         fabAdd = view.findViewById(R.id.fabAddLichHoc);
+        edtSearchLichHoc = view.findViewById(R.id.edtSearchLichHoc);
+        btnSearchLichHoc = view.findViewById(R.id.btnSearchLichHoc);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         // Khởi tạo DAO
@@ -59,6 +66,18 @@ public class LichHocFragment extends Fragment {
             }
         });
 
+        btnSearchLichHoc.setOnClickListener(v -> {
+           String keyword = edtSearchLichHoc.getText().toString();
+           if (!keyword.isEmpty()) {
+               List<LichHoc> searchResults = lichHocDAO.searchLichHoc(keyword);
+               adapter.updateList(searchResults);
+               adapter.notifyDataSetChanged();
+           }else{
+               List<LichHoc> searchResults = lichHocDAO.getAllLichHoc();
+               adapter.updateList(searchResults);
+               adapter.notifyDataSetChanged();
+           }
+        });
         return view;
     }
 

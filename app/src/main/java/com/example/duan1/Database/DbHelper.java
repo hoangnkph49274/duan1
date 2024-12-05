@@ -32,7 +32,7 @@ public class DbHelper extends SQLiteOpenHelper {
             "MaBaiTap INTEGER PRIMARY KEY AUTOINCREMENT, " +
             "TenBaiTap TEXT NOT NULL, " +
             "HanNop TEXT, " +
-            "TrangThai TEXT, " +
+            "TrangThai INTEGER CHECK(TrangThai IN (0, 1))," +
             "NoiDungBaiTap TEXT, " +
             "MaMonHoc INTEGER, " +
             "FOREIGN KEY (MaMonHoc) REFERENCES MonHoc(MaMonHoc) ON DELETE CASCADE)";
@@ -75,6 +75,26 @@ public class DbHelper extends SQLiteOpenHelper {
             "MaMonHoc INTEGER, " +
             "FOREIGN KEY (MaMonHoc) REFERENCES MonHoc(MaMonHoc) ON DELETE CASCADE)";
 
+    private static final String CREATE_TABLE_DIEM = "CREATE TABLE BangDiem (" +
+                    "MaDiem INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                    "MaMonHoc INTEGER NOT NULL, " +
+                    "DiemGiuaKy REAL NOT NULL, " +
+                    "DiemCuoiKy REAL NOT NULL, " +
+                    "DiemKhac REAL, " +
+                    "DiemTongKet REAL, " +
+                    "TrangThai TEXT NOT NULL, " +
+                    "FOREIGN KEY (MaMonHoc) REFERENCES MonHoc(MaMonHoc) ON DELETE CASCADE" +
+                    ");";
+
+    private static final String CREATE_TABLE_HOCPHI = "CREATE TABLE HocPhi (" +
+            "MaHocPhi INTEGER PRIMARY KEY AUTOINCREMENT, " +
+            "SoTien INTEGER NOT NULL, " +
+            "SoLanDaHoc INTEGER NOT NULL, " +
+            "SoTienDaDong INTEGER NOT NULL, " +
+            "MaMonHoc INTEGER NOT NULL, "+
+            "FOREIGN KEY (MaMonHoc) REFERENCES MonHoc(MaMonHoc) ON DELETE CASCADE" +
+            ");";
+
     // Lệnh tạo bảng trung gian "SinhVien_MonHoc"
     private static final String CREATE_TABLE_SINHVIEN_MONHOC = "CREATE TABLE SinhVien_MonHoc (" +
             "SinhVienID INTEGER, " +
@@ -93,12 +113,17 @@ public class DbHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_TABLE_MUCTIEU);
         db.execSQL(CREATE_TABLE_GHICHU);
         db.execSQL(CREATE_TABLE_LICHHOC);
-
+        db.execSQL(CREATE_TABLE_DIEM);
+        db.execSQL(CREATE_TABLE_HOCPHI);
         db.execSQL(CREATE_TABLE_SINHVIEN_MONHOC);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        if (oldVersion < 2) { // Phiên bản 2 là phiên bản có bảng BangDiem và HocPhi
+            db.execSQL(CREATE_TABLE_DIEM);
+            db.execSQL(CREATE_TABLE_HOCPHI);
+        }
         db.execSQL("DROP TABLE IF EXISTS SinhVien_MonHoc");
         db.execSQL("DROP TABLE IF EXISTS LichHoc");
         db.execSQL("DROP TABLE IF EXISTS GhiChu");
@@ -106,6 +131,8 @@ public class DbHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS TaiLieu");
         db.execSQL("DROP TABLE IF EXISTS BaiTap");
         db.execSQL("DROP TABLE IF EXISTS MonHoc");
+        db.execSQL("DROP TABLE IF EXISTS BangDiem");
+        db.execSQL("DROP TABLE IF EXISTS HocPhi");
         db.execSQL("DROP TABLE IF EXISTS SinhVien");
         String sql1 = "INSERT INTO LICHHOC (TrangThai) VALUES (1);";
         String sql2 = "INSERT INTO LICHHOC (TrangThai) VALUES (0);";
@@ -115,7 +142,7 @@ public class DbHelper extends SQLiteOpenHelper {
         String sql4 = "INSERT INTO MUCTIEU (TrangThai) VALUES (0);";
         db.execSQL(sql3);
         db.execSQL(sql4);
-        String sql5 = "INSERT INTO SinhVien (MaSinhVien, TenSinhVien) VALUES (1, ''"+user+"');";
+        String sql5 = "INSERT INTO SinhVien (MaSinhVien, TenSinhVien) VALUES (1, "+user+");";
         db.execSQL(sql5);
 
         onCreate(db);

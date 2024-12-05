@@ -1,27 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".UI.MonHocFragment">
 
-    <!-- TODO: Update blank fragment layout -->
+    <!-- Thanh tìm kiếm -->
+    <LinearLayout
+        android:id="@+id/searchLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_margin="16dp"
+        android:gravity="center_vertical">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:boxBackgroundMode="outline"
+            app:boxStrokeColor="#6200EE"
+            app:boxBackgroundColor="#FFFFFF"
+            app:boxCornerRadiusTopStart="16dp"
+            app:boxCornerRadiusTopEnd="16dp"
+            app:boxCornerRadiusBottomStart="16dp"
+            app:boxCornerRadiusBottomEnd="16dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtSearchMonHoc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Nhập từ khóa tìm kiếm"
+                android:textSize="16sp"
+                android:inputType="text" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <ImageView
+            android:id="@+id/btnSearchMonHoc"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@drawable/icon_seach"
+            android:layout_marginStart="8dp"
+            android:layout_gravity="center"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Tìm kiếm" />
+    </LinearLayout>
+
+    <!-- RecyclerView hiển thị danh sách môn học -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewMonHoc"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:divider="@color/white"
-        android:dividerHeight="5dp"
-        android:layout_margin="20dp"/>
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/searchLayout"
+        android:layout_above="@id/fabAddMonHoc"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="8dp"
+        android:dividerHeight="1dp"
+        android:clipToPadding="false"
+        android:paddingBottom="80dp" />
+
+    <!-- Nút thêm môn học -->
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fabAddMonHoc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
         android:layout_margin="16dp"
         android:src="@drawable/iconadd"
-        android:contentDescription="Add"
+        android:contentDescription="Thêm môn học"
         android:tint="#FFFFFF"
-        android:backgroundTint="#BCB9BA" />
+        android:backgroundTint="@color/purple_500" />
 </RelativeLayout>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".UI.HocPhiFragment">
+
+    <!-- Search Layout -->
+<!--    <LinearLayout-->
+<!--        android:id="@+id/searchLayout"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:orientation="horizontal"-->
+<!--        android:layout_margin="16dp"-->
+<!--        android:gravity="center_vertical">-->
+
+<!--        <com.google.android.material.textfield.TextInputLayout-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_weight="1"-->
+<!--            app:boxBackgroundMode="outline"-->
+<!--            app:boxStrokeColor="@color/purple_500"-->
+<!--            app:boxBackgroundColor="@color/white"-->
+<!--            app:boxCornerRadiusTopStart="16dp"-->
+<!--            app:boxCornerRadiusTopEnd="16dp"-->
+<!--            app:boxCornerRadiusBottomStart="16dp"-->
+<!--            app:boxCornerRadiusBottomEnd="16dp">-->
+
+<!--            <com.google.android.material.textfield.TextInputEditText-->
+<!--                android:id="@+id/edtSearchHocPhi"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:hint="Nhập từ khóa tìm kiếm"-->
+<!--                android:textSize="16sp"-->
+<!--                android:inputType="text" />-->
+<!--        </com.google.android.material.textfield.TextInputLayout>-->
+
+<!--        <ImageView-->
+<!--            android:id="@+id/btnSearchHocPhi"-->
+<!--            android:layout_width="48dp"-->
+<!--            android:layout_height="48dp"-->
+<!--            android:src="@drawable/icon_seach"-->
+<!--            android:layout_marginStart="8dp"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:background="?attr/selectableItemBackgroundBorderless"-->
+<!--            android:contentDescription="Tìm kiếm" />-->
+<!--    </LinearLayout>-->
+
+    <!-- RecyclerView -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewHocPhi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:clipToPadding="false"
+        android:paddingBottom="80dp"
+        android:scrollbars="vertical"
+        android:overScrollMode="always"
+        android:layout_marginLeft="20dp"/>
+
+    <!-- Tổng tiền TextView -->
+    <TextView
+        android:id="@+id/tvTongTienHoc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_margin="16dp"
+        android:gravity="end"
+        android:padding="8dp"
+        android:text="Tổng tiền: "
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:background="#F3F3F3"
+        android:elevation="4dp" />
+</FrameLayout>

@@ -128,7 +128,11 @@
         android:id="@+id/nav_XemTaiLieu"
         android:name="com.example.duan1.TaiLieu.XemTaiLieuFragment"
         android:label="Tài liệu"
-        tools:layout="@layout/fragment_xem_tai_lieu" />
+        tools:layout="@layout/fragment_xem_tai_lieu" >
+        <action
+            android:id="@+id/action_nav_XemTaiLieu_to_nav_WebView"
+            app:destination="@id/nav_WebView" />
+    </fragment>
     <fragment
         android:id="@+id/nav_ThemBaiTap"
         android:name="com.example.duan1.BaiTap.ThemBaiTapFragment"
@@ -143,7 +147,22 @@
         android:id="@+id/nav_Search"
         android:name="com.example.duan1.UI.SearchFragment"
         android:label="Search"
-        tools:layout="@layout/fragment_search" >
+        tools:layout="@layout/fragment_search" />
+    <fragment
+        android:id="@+id/nav_QlyDiem"
+        android:name="com.example.duan1.UI.DiemFragment"
+        android:label="Quản lý điểm"
+        tools:layout="@layout/fragment_diem" />
+    <fragment
+        android:id="@+id/nav_ThongKe"
+        android:name="com.example.duan1.UI.HocPhiFragment"
+        android:label="Thống kê"
+        tools:layout="@layout/fragment_hoc_phi" />
 
-    </fragment>
+    <fragment
+        android:id="@+id/nav_WebView"
+        android:name="com.example.duan1.UI.WebViewFragment"
+        android:label="WebView"
+        tools:layout="@layout/fragment_web_view" />
+
 </navigation>

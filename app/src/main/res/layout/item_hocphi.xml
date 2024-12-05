@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="365dp"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp"
+    app:cardCornerRadius="10dp"
+    android:backgroundTint="#9BE6EF">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <LinearLayout
+            android:layout_width="230dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <TextView
+                android:id="@+id/tvMaHocPhi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Mã học phí: C1"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="5dp" />
+
+            <TextView
+                android:id="@+id/tvNameMon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Môn: Lập trình C"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:textSize="16sp"
+                android:layout_marginBottom="5dp" />
+
+            <TextView
+                android:id="@+id/tvSoTien"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:text="Số Tiền: "
+                android:textSize="16sp"
+                android:layout_marginBottom="5dp" />
+
+            <TextView
+                android:id="@+id/tvHocLai"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Số lần học lại: "
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:textSize="16sp"
+                android:layout_marginBottom="10dp" />
+            <TextView
+                android:id="@+id/tvTienDaDong"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Số tiền đã đóng: "
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:textSize="16sp"
+                android:layout_marginBottom="10dp" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_margin="20dp">
+
+            <Button
+                android:id="@+id/btnHocLai"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Học lại"/>
+
+            <Button
+                android:id="@+id/btnReset"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Reset"
+                android:layout_marginTop="20dp"/>
+        </LinearLayout>
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

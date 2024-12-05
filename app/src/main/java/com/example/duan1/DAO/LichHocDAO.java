@@ -81,4 +81,48 @@ public class LichHocDAO {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         return db.delete("LichHoc", "MaLichHoc = ?", new String[]{String.valueOf(maLichHoc)});
     }
+    // Tìm kiếm lịch học trong tất cả các cột và trả về danh sách
+    public ArrayList<LichHoc> searchLichHoc(String keyword) {
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        ArrayList<LichHoc> lichHocList = new ArrayList<>();
+
+        // Câu truy vấn SQL tìm kiếm trong các trường: NgayHoc, GioHoc, GiangVien, TrangThai, MaMonHoc
+        Cursor cursor = db.rawQuery(
+                "SELECT * FROM LichHoc WHERE NgayHoc LIKE ? OR GioHoc LIKE ? OR GiangVien LIKE ? OR TrangThai LIKE ? OR MaMonHoc LIKE ? OR MaLichHoc LIKE ?",
+                new String[]{"%" + keyword + "%", "%" + keyword + "%", "%" + keyword + "%", "%" + keyword + "%", "%" + keyword + "%", "%" + keyword + "%"}
+        );
+
+
+        // Kiểm tra và thêm dữ liệu vào danh sách
+        if (cursor != null && cursor.moveToFirst()) {
+            do {
+                int maLichHoc = cursor.getInt(cursor.getColumnIndexOrThrow("MaLichHoc"));
+                String ngayHoc = cursor.getString(cursor.getColumnIndexOrThrow("NgayHoc"));
+                String gioHoc = cursor.getString(cursor.getColumnIndexOrThrow("GioHoc"));
+                String giangVien = cursor.getString(cursor.getColumnIndexOrThrow("GiangVien"));
+                String trangThai = cursor.getString(cursor.getColumnIndexOrThrow("TrangThai"));
+                int maMonHoc = cursor.getInt(cursor.getColumnIndexOrThrow("MaMonHoc"));
+
+                // Tạo đối tượng LichHoc
+                LichHoc lichHoc = new LichHoc();
+                lichHoc.setMa(maLichHoc);
+                lichHoc.setNgay(ngayHoc);
+                lichHoc.setGio(gioHoc);
+                lichHoc.setGvien(giangVien);
+                lichHoc.setTrangThai(trangThai);
+                lichHoc.setMon(maMonHoc);
+
+                // Thêm vào danh sách
+                lichHocList.add(lichHoc);
+            } while (cursor.moveToNext());
+        }
+
+        // Đóng Cursor
+        if (cursor != null) {
+            cursor.close();
+        }
+
+        return lichHocList; // Trả về danh sách lịch học
+    }
+
 }

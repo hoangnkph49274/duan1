@@ -13,6 +13,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.example.duan1.Adapter.TaiLieuAdapter;
 import com.example.duan1.DAO.TaiLieuDAO;
@@ -28,6 +31,9 @@ public class TaiLieuFragment extends Fragment {
     private FloatingActionButton fabAdd;
     private TaiLieuAdapter adapter;
     private List<TaiLieu> taiLieuList;
+
+    private EditText edtSearchTaiLieu;
+    private ImageView btnSearchTaiLieu;
     private TaiLieuDAO taiLieuDAO;
 
     public TaiLieuFragment() {
@@ -48,6 +54,8 @@ public class TaiLieuFragment extends Fragment {
         // Initialize RecyclerView and FloatingActionButton
         recyclerView = view.findViewById(R.id.recyclerViewTaiLieu);
         fabAdd = view.findViewById(R.id.fabAddTaiLieu);
+        edtSearchTaiLieu = view.findViewById(R.id.edtSearchTaiLieu);
+        btnSearchTaiLieu = view.findViewById(R.id.btnSearchTaiLieu);
 
         // Initialize TaiLieuDAO
         taiLieuDAO = new TaiLieuDAO(requireContext());
@@ -64,6 +72,18 @@ public class TaiLieuFragment extends Fragment {
         fabAdd.setOnClickListener(v -> {
             NavController navController = Navigation.findNavController(view);
             navController.navigate(R.id.action_nav_QlyTaiLieu_to_nav_ThemTaiLieu);
+        });
+        btnSearchTaiLieu.setOnClickListener(v -> {
+            String keyword = edtSearchTaiLieu.getText().toString().trim();
+            if(!keyword.isEmpty()){
+                taiLieuList = taiLieuDAO.searchTaiLieu(keyword);
+                adapter.updateData(taiLieuList);
+                adapter.notifyDataSetChanged();
+            }else{
+                taiLieuList = taiLieuDAO.getAllTaiLieu();
+                adapter.updateData(taiLieuList);
+                adapter.notifyDataSetChanged();
+            }
         });
     }
 }

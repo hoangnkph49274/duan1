@@ -16,6 +16,12 @@
         <item
             android:id="@+id/nav_QlyBaiTap"
             android:title="Quản lý bài tập" />
+        <item
+            android:id="@+id/nav_QlyDiem"
+            android:title="Quản lý điểm" />
+        <item
+            android:id="@+id/nav_ThongKe"
+            android:title="Thống kê" />
     </group>
     <item
         android:id="@+id/divider"
@@ -30,12 +36,7 @@
             android:title="Mục Tiêu" />
     </group>
 
-    <item
-        android:enabled="false"
-        android:title="" />
-    <item
-        android:enabled="false"
-        android:title="" />
+
     <item
         android:enabled="false"
         android:title="" />

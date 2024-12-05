@@ -63,6 +63,11 @@ public class LichHocAdapter extends RecyclerView.Adapter<LichHocAdapter.LichHocV
         return lichHocList.size();
     }
 
+    public void updateList(List<LichHoc> searchResults) {
+        this.lichHocList = searchResults;
+        notifyDataSetChanged();
+    }
+
     public static class LichHocViewHolder extends RecyclerView.ViewHolder {
         TextView tvMaLich, tvNgayHoc, tvGioHoc, tvGiangVien, tvMonHoc, tvTrangThai;
         ImageView btnEdit;

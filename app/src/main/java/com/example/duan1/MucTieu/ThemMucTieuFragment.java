@@ -91,7 +91,7 @@ public class ThemMucTieuFragment extends Fragment {
             }
 
             // Thêm vào cơ sở dữ liệu
-            long result = mucTieuDAO.addMucTieu(noiDung, ngayBatDau, ngayKetThuc, TrangThai,1);
+            long result = mucTieuDAO.addMucTieu(noiDung, ngayBatDau, ngayKetThuc, TrangThai);
             if (result > 0) {
                 Toast.makeText(getContext(), "Thêm mục tiêu thành công!", Toast.LENGTH_SHORT).show();
                 scheduleNotification(ngayKetThuc, noiDung);

@@ -70,6 +70,7 @@ public class Login_Activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 DangNhap();
+
             }
         });
         DangKi.setOnClickListener(new View.OnClickListener() {

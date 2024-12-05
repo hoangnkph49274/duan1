@@ -19,18 +19,16 @@ public class MucTieuDAO {
     }
 
     // Thêm mục tiêu
-    public long addMucTieu(String noiDungMucTieu, String ngayBatDau, String ngayKetThuc, int trangThai, int maSinhVien) {
+    public long addMucTieu(String noiDungMucTieu, String ngayBatDau, String ngayKetThuc, int trangThai) {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put("NoiDungMucTieu", noiDungMucTieu);
         values.put("NgayBatDau", ngayBatDau);
         values.put("NgayKetThuc", ngayKetThuc);
         values.put("TrangThai", trangThai);
-        values.put("MaSinhVien", maSinhVien);
         return db.insert("MucTieu", null, values);
     }
 
-    // Lấy tất cả mục tiêu
     // Lấy danh sách tất cả mục tiêu
     public List<MucTieu> getAllMucTieu() {
         List<MucTieu> mucTieuList = new ArrayList<>();
@@ -88,5 +86,37 @@ public class MucTieuDAO {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         return db.delete("MucTieu", "MaMucTieu = ?", new String[]{String.valueOf(maMucTieu)});
     }
+    // Tìm kiếm mục tiêu theo các tiêu chí: NoiDungMucTieu, NgayBatDau, NgayKetThuc, TrangThai
+    public List<MucTieu> searchMucTieu(String keyword) {
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        List<MucTieu> mucTieuList = new ArrayList<>();
+
+        Cursor cursor = db.rawQuery(
+                "SELECT * FROM MucTieu WHERE NoiDungMucTieu LIKE ? OR NgayBatDau LIKE ? OR NgayKetThuc LIKE ? OR TrangThai LIKE ? OR MaMucTieu LIKE ?",
+                new String[]{"%" + keyword + "%", "%" + keyword + "%", "%" + keyword + "%", "%" + keyword + "%", "%" + keyword + "%"}
+        );
+
+        // Kiểm tra và thêm dữ liệu vào danh sách
+        if (cursor != null && cursor.moveToFirst()) {
+            do {
+                int ma = cursor.getInt(cursor.getColumnIndexOrThrow("MaMucTieu"));
+                String noidung = cursor.getString(cursor.getColumnIndexOrThrow("NoiDungMucTieu"));
+                String ngayBatDau = cursor.getString(cursor.getColumnIndexOrThrow("NgayBatDau"));
+                String ngayKetThuc = cursor.getString(cursor.getColumnIndexOrThrow("NgayKetThuc"));
+                String trangThai = cursor.getString(cursor.getColumnIndexOrThrow("TrangThai"));
+
+                // Thêm mục tiêu vào danh sách
+                mucTieuList.add(new MucTieu(ma, ngayBatDau, ngayKetThuc, noidung, trangThai));
+            } while (cursor.moveToNext());
+        }
+
+        // Đóng cursor
+        if (cursor != null) {
+            cursor.close();
+        }
+
+        return mucTieuList; // Trả về danh sách mục tiêu tìm được
+    }
+
 }
 

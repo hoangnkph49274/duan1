@@ -68,6 +68,11 @@ public class MucTieuAdapter extends RecyclerView.Adapter<MucTieuAdapter.ViewHold
         return mucTieuList.size();
     }
 
+    public void updateData(List<MucTieu> filteredMucTieuList) {
+        this.mucTieuList = filteredMucTieuList;
+        notifyDataSetChanged();
+    }
+
     public static class ViewHolder extends RecyclerView.ViewHolder {
         TextView tvMa, tvTen, tvNgayHoc, tvTrangThai;
         ImageView btnEdit;

@@ -1,6 +1,9 @@
 package com.example.duan1.TaiLieu;
 
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.os.Bundle;
+import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +13,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.duan1.DAO.MonHocDAO;
 import com.example.duan1.R;
@@ -53,9 +58,23 @@ public class XemTaiLieuFragment extends Fragment {
 
             tvXemTenTaiLieu.setText("Tên tài liệu: " + tenTaiLieu);
             tvXemLoaiTaiLieu.setText("Loại tài liệu: " + loaiTaiLieu);
-            tvXemDuongDan.setText("Đường dẫn: " + duongDan);
+            tvXemDuongDan.setText("Đường dẫn: Kích vào để mở link");
+            tvXemDuongDan.setMovementMethod(LinkMovementMethod.getInstance());
+            tvXemDuongDan.setTextColor(Color.BLACK);
+            tvXemDuongDan.setPaintFlags(tvXemDuongDan.getPaintFlags() & ~Paint.UNDERLINE_TEXT_FLAG);
             tvXemMaMonHoc.setText("Môn: " + tenMonHoc);
+            tvXemDuongDan.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    // Xử lý khi TextView tvXemDuongDan được nhấn
+                    Bundle bundle = new Bundle();
+                    bundle.putString("duongDan", duongDan);
+                    NavController navController = NavHostFragment.findNavController(XemTaiLieuFragment.this);
+                    navController.navigate(R.id.action_nav_XemTaiLieu_to_nav_WebView, bundle);
+                }
+            });
         }
+
     }
     private String getTenMonHoc(int maMonHoc) {
         if (maMonHoc == -1) {

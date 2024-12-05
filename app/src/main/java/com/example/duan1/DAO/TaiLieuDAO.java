@@ -99,4 +99,31 @@ public class TaiLieuDAO {
         }
         return taiLieuList;
     }
+    /**
+     * Tìm kiếm tài liệu theo các tiêu chí: TenTaiLieu, LoaiTaiLieu, DuongDan
+     */
+    public List<TaiLieu> searchTaiLieu(String keyword) {
+        List<TaiLieu> taiLieuList = new ArrayList<>();
+        Cursor cursor = db.rawQuery(
+                "SELECT * FROM TaiLieu WHERE TenTaiLieu LIKE ? OR LoaiTaiLieu LIKE ? OR DuongDan LIKE ? OR MaMonHoc LIKE ? OR MaTaiLieu LIKE ?",
+                new String[]{"%" + keyword + "%", "%" + keyword + "%", "%" + keyword + "%", "%" + keyword + "%", "%" + keyword + "%"}
+        );
+
+
+        if (cursor != null && cursor.moveToFirst()) {
+            do {
+                TaiLieu taiLieu = new TaiLieu();
+                taiLieu.setMa(cursor.getInt(cursor.getColumnIndexOrThrow("MaTaiLieu")));
+                taiLieu.setTen(cursor.getString(cursor.getColumnIndexOrThrow("TenTaiLieu")));
+                taiLieu.setLoai(cursor.getString(cursor.getColumnIndexOrThrow("LoaiTaiLieu")));
+                taiLieu.setDdan(cursor.getString(cursor.getColumnIndexOrThrow("DuongDan")));
+                taiLieu.setMon(cursor.getInt(cursor.getColumnIndexOrThrow("MaMonHoc")));
+                taiLieuList.add(taiLieu);
+            } while (cursor.moveToNext());
+            cursor.close();
+        }
+
+        return taiLieuList; // Trả về danh sách tài liệu tìm được
+    }
+
 }
