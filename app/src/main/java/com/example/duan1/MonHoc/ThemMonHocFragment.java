@@ -45,18 +45,18 @@ public class ThemMonHocFragment extends Fragment {
     }
 
     private void addMonHoc() {
-        // Get the input values
+        // Lấy dữ liệu từ các EditText
         String tenMonHoc = edtTenMon.getText().toString().trim();
         String soTinChiStr = edtSoTinChi.getText().toString().trim();
         String giangVien = edtGiangVien.getText().toString().trim();
 
-        // Validate the input
+        // Kiểm tra thông tin nhập liệu
         if (tenMonHoc.isEmpty() || soTinChiStr.isEmpty() || giangVien.isEmpty()) {
             Toast.makeText(getContext(), "Vui lòng nhập đầy đủ thông tin!", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        // Convert the number of credits to integer
+        // Chuyển đổi số tín chỉ
         int soTinChi;
         try {
             soTinChi = Integer.parseInt(soTinChiStr);
@@ -65,17 +65,23 @@ public class ThemMonHocFragment extends Fragment {
             return;
         }
 
-        // Insert the MonHoc into the database
+        // Kiểm tra xem tên môn học đã tồn tại chưa
         MonHocDAO monHocDAO = new MonHocDAO(getContext());
+        if (monHocDAO.isMonHocExists(tenMonHoc)) {
+            Toast.makeText(getContext(), "Tên môn học đã tồn tại!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        // Nếu tên môn học chưa tồn tại, thêm mới
         long result = monHocDAO.addMonHoc(tenMonHoc, soTinChi, giangVien);
 
         if (result > 0) {
-            // Successfully added, navigate back to the list
+            // Thêm thành công
             Toast.makeText(getContext(), "Môn học đã được thêm kèm điểm và học phí!", Toast.LENGTH_SHORT).show();
             navController = Navigation.findNavController(getView());
-            navController.popBackStack(); // Go back to the previous fragment (MonHocFragment)
+            navController.popBackStack(); // Quay lại màn hình trước
         } else {
-            // Failed to add
+            // Thêm thất bại
             Toast.makeText(getContext(), "Thêm môn học thất bại!", Toast.LENGTH_SHORT).show();
         }
     }

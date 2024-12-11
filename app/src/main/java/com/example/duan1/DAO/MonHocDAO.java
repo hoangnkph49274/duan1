@@ -79,6 +79,21 @@ public class MonHocDAO {
         }
         return monHocList;
     }
+    public boolean isMonHocExists(String tenMonHoc) {
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        String query = "SELECT COUNT(*) FROM MonHoc WHERE TenMonHoc = ?";
+        Cursor cursor = db.rawQuery(query, new String[]{tenMonHoc});
+
+        if (cursor != null) {
+            cursor.moveToFirst();
+            int count = cursor.getInt(0);
+            cursor.close();
+            db.close();
+            return count > 0;
+        }
+
+        return false;
+    }
 
 
 

@@ -2,6 +2,7 @@ package com.example.duan1.Adapter;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.duan1.DAO.GhiChuDAO;
@@ -52,9 +54,9 @@ public class HocPhiAdapter extends RecyclerView.Adapter<HocPhiAdapter.HocPhiView
         MonHocDAO monHocDAO = new MonHocDAO(holder.itemView.getContext());
         String tenMonHoc = monHocDAO.getTenMonHocByMa(hocPhi.getMaMonHoc());
         holder.tvNameMon.setText("Môn học: " + tenMonHoc);
-        holder.tvSoTien.setText("Số tiền: " + format.format(hocPhi.getSoTien()) + " VND");
+        holder.tvSoTien.setText("Số tiền: " + format.format(hocPhi.getSoTien()));
         holder.tvHocLai.setText("Số lần đã học: " + hocPhi.getSoLanDaHoc());
-        holder.tvTienDaDong.setText("Số tiền đã đóng: " + format.format(hocPhi.getSoTienDaDong()) + " VND");
+        holder.tvTienDaDong.setText("Số tiền đã đóng: " + format.format(hocPhi.getSoTienDaDong()) );
 
         // Handle button click events
         holder.btnHocLai.setOnClickListener(v -> {
@@ -72,10 +74,10 @@ public class HocPhiAdapter extends RecyclerView.Adapter<HocPhiAdapter.HocPhiView
             if (isUpdated>0) {
                 // Cập nhật giao diện
                 holder.tvHocLai.setText("Số lần học lại: " + newSoLanHocLai);
-                holder.tvTienDaDong.setText("Số tiền đã đóng: " + newTongTien + " VND");
+                holder.tvTienDaDong.setText("Số tiền đã đóng: " + newTongTien);
                 Toast.makeText(context, "Đã cập nhật học phí!", Toast.LENGTH_SHORT).show();
                 String total = calculateTotal();
-                tvTongTien.setText("Tổng tiền: " + total + " VND");
+                tvTongTien.setText("Tổng tiền: " + total);
                 notifyItemChanged(position);
                 notifyDataSetChanged();
             } else {
@@ -117,7 +119,11 @@ public class HocPhiAdapter extends RecyclerView.Adapter<HocPhiAdapter.HocPhiView
             AlertDialog dialog = builder.create();
             dialog.show();
         });
-
+        if (hocPhi.getSoLanDaHoc() >=2) {
+            holder.itemView.setBackgroundColor(ContextCompat.getColor(context, R.color.red));
+        } else {
+            holder.itemView.setBackgroundColor(ContextCompat.getColor(context, R.color.green));
+        }
     }
 
     @Override

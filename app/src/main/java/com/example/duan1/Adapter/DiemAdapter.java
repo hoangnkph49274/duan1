@@ -2,6 +2,7 @@ package com.example.duan1.Adapter;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
@@ -19,6 +21,7 @@ import com.example.duan1.DAO.MonHocDAO;
 import com.example.duan1.Model.BangDiem;
 import com.example.duan1.R;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 public class DiemAdapter extends RecyclerView.Adapter<DiemAdapter.DiemViewHolder> {
@@ -51,8 +54,10 @@ public class DiemAdapter extends RecyclerView.Adapter<DiemAdapter.DiemViewHolder
         holder.tvDiemGiuaKi.setText("Điểm giữa kỳ: " + bangDiem.getDiemGiuaKy());
         holder.tvCuoiki.setText("Điểm cuối kỳ: " + bangDiem.getDiemCuoiKy());
         holder.tvKhac.setText("Điểm khác: " + bangDiem.getDiemKhac());
-        holder.tvTongKet.setText("Điểm tổng kết: " + bangDiem.getDiemTongKet());
+        DecimalFormat df = new DecimalFormat("#.##"); // Chỉ giữ 2 chữ số thập phân
+        holder.tvTongKet.setText("Điểm tổng kết: " + df.format(bangDiem.getDiemTongKet()));
         holder.tvTrangThaiDiem.setText("Trạng thái: " + bangDiem.getTrangThai());
+
 
         // Handle edit button click
         holder.btnEditDiem.setOnClickListener(v -> {
@@ -111,6 +116,16 @@ public class DiemAdapter extends RecyclerView.Adapter<DiemAdapter.DiemViewHolder
             // Hiển thị dialog
             builder.create().show();
         });
+        Log.d("DiemAdapter", "Trạng thái: " + bangDiem.getTrangThai());
+
+        if (bangDiem.getTrangThai().trim().equalsIgnoreCase("Đạt")) {
+            Log.d("DiemAdapter", "Màu xanh được áp dụng");
+            holder.itemView.setBackgroundColor(ContextCompat.getColor(context, R.color.green));
+        } else {
+            Log.d("DiemAdapter", "Màu đỏ được áp dụng");
+            holder.itemView.setBackgroundColor(ContextCompat.getColor(context, R.color.red));
+        }
+
     }
 
     @Override
